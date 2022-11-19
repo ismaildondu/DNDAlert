@@ -63,6 +63,8 @@ const Alert = new DNDAlert({
     console.log("Modal Opened");
     console.log(bag);
   },
+  opacity: 1,
+  autoCloseDuration: 3000,
 });
 ```
 
@@ -85,6 +87,8 @@ const Alert = new DNDAlert({
 * [**text_align**] Css property of message
 * [**theme**] Theme (dark AND white)
 * [**onOpen**] The function is called by the library when the modal is opened.
+* [**opacity**] Modal css opacity.
+* [**autoCloseDuration**] Takes value (X) in milliseconds and closes modal after X milliseconds.
 
 ## Installation
 
@@ -104,6 +108,8 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 | type                 | info                     |
 | buttons[] > class    | dnd-alert-default-button |
 | theme                | white                    |
+| opacity              | 1                        |
+| autoCloseDuration    | false                    |
 
 ## IMG
 
