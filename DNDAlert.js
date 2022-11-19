@@ -13,7 +13,6 @@ class DNDAlert {
   createContainer(CLASS_NAME = this.CLASS_LIST.container) {
     let container = document.createElement("div");
     container.classList.add(CLASS_NAME);
-
     return container;
   }
   createContentBox(CLASS_NAME = this.CLASS_LIST.content) {
@@ -122,12 +121,32 @@ class DNDAlert {
     return { container, content_box, alert_message, header, button_group };
   }
 
-  errorControl() {
+  errorControl(props) {
     this.ERROR_PROCESSOR.forEach((error) => {
       if (error.condition) {
         error.success();
       }
     });
+    this.buttonErrorControl(props.buttons);
+  }
+  buttonErrorControl(buttons = false) {
+    if (!Array.isArray(buttons) && buttons) {
+      throw new Error(this.ERROR_LIST.buttons_array);
+    } else if (buttons.length > 0) {
+      buttons.forEach((button) => {
+        if (!button.text) {
+          throw new Error(this.ERROR_LIST.button_text);
+        }
+        if (!button.click) {
+          throw new Error(this.ERROR_LIST.button_click);
+        }
+        if (typeof button.click !== "function") {
+          throw new Error(this.ERROR_LIST.button_click_type);
+        }
+      });
+    } else {
+      return false;
+    }
   }
 
   containerClickClose(containerRef, closeBackgroundClick) {
@@ -176,6 +195,10 @@ class DNDAlert {
         this.ERROR_PREFIX +
         "Type is not valid. Type must be one of these: " +
         this.TYPE_LIST.join(", "),
+      buttons_array: this.ERROR_PREFIX + "Buttons must be an array.",
+      button_text: this.ERROR_PREFIX + "Button text is required.",
+      button_click: this.ERROR_PREFIX + "Button click is required.",
+      button_click_type: this.ERROR_PREFIX + "Button click must be a function.",
     };
     this.ERROR_PROCESSOR = [
       {
