@@ -10,33 +10,33 @@ class DNDAlert {
     this.DRAW(this.INIT(props));
   }
 
-  createContainer(CLASS_NAME = this.CLASS_LIST.container) {
+  createContainer() {
     let container = document.createElement("div");
-    container.classList.add(CLASS_NAME);
+    container.classList.add(this.CLASS_LIST.container);
     return container;
   }
-  createContentBox(CLASS_NAME = this.CLASS_LIST.content) {
+  createContentBox(theme) {
     let content_box = document.createElement("div");
-    content_box.classList.add(CLASS_NAME);
+    content_box.classList.add(this.CLASS_LIST[theme].content);
     return content_box;
   }
-  createAlertTitle(title) {
+  createAlertTitle(title, theme) {
     let alert_title = document.createElement("h1");
-    alert_title.classList.add(this.CLASS_LIST.title);
+    alert_title.classList.add(this.CLASS_LIST[theme].title);
     alert_title.innerHTML = title;
     return alert_title;
   }
 
-  createSvgElement(type) {
+  createSvgElement(type, theme) {
     let svgDiv = document.createElement("div");
-    svgDiv.classList.add(this.CLASS_LIST.svg);
+    svgDiv.classList.add(this.CLASS_LIST[theme].svg);
     svgDiv.innerHTML = this.SVG_LIST[type];
     return svgDiv;
   }
 
-  createAlertMessage(message, type, html, text_align) {
+  createAlertMessage(message, type, html, text_align, theme) {
     let alert_message = document.createElement("p");
-    alert_message.classList.add(this.CLASS_LIST.message);
+    alert_message.classList.add(this.CLASS_LIST[theme].message);
 
     if (html) {
       alert_message.innerHTML = message;
@@ -46,32 +46,35 @@ class DNDAlert {
 
     alert_message.style.textAlign = text_align;
 
-    alert_message.prepend(this.createSvgElement(type));
+    alert_message.prepend(this.createSvgElement(type, theme));
 
     return alert_message;
   }
 
-  createTopRightCloseButton(containerRef) {
+  createTopRightCloseButton(containerRef, theme) {
     let close_button = document.createElement("button");
-    close_button.classList.add(this.CLASS_LIST.close_button);
+    close_button.classList.add(this.CLASS_LIST[theme].close_button);
     close_button.innerHTML = "X";
+    if (theme === this.THEME_ENUM.DARK) {
+      close_button.style.color = "#000";
+    }
     close_button.addEventListener("click", () => {
       this.removeContainer(containerRef);
     });
     return close_button;
   }
 
-  createHeader(titleRef, containerRef) {
+  createHeader(titleRef, containerRef, theme) {
     let title = titleRef;
     let header = document.createElement("div");
-    header.classList.add(this.CLASS_LIST.header);
+    header.classList.add(this.CLASS_LIST[theme].header);
     header.appendChild(title);
-    header.appendChild(this.createTopRightCloseButton(containerRef));
+    header.appendChild(this.createTopRightCloseButton(containerRef, theme));
 
     return header;
   }
 
-  createButtonGroup(buttons, containerRef) {
+  createButtonGroup(buttons, containerRef, theme) {
     if (buttons.length === 0) return false;
 
     const BAG_ELEMENT = {
@@ -81,10 +84,10 @@ class DNDAlert {
     };
 
     let buttonGroup = document.createElement("div");
-    buttonGroup.classList.add(this.CLASS_LIST.button_group);
+    buttonGroup.classList.add(this.CLASS_LIST[theme].button_group);
 
     buttons.forEach((button) => {
-      let className = button.class || "dnd-alert-default-button";
+      let className = button.class || this.CLASS_LIST[theme].button;
       let buttonElement = document.createElement("button");
       buttonElement.innerText = button.text;
       buttonElement.className = className;
@@ -100,23 +103,25 @@ class DNDAlert {
   createMainElements({
     title,
     message,
-    type = "info",
+    type = this.TYPE_LIST[3], // [0] success, [1] error, [2] warning, [3] info -> enumLoader() -> TYPE_LIST
     html = false,
     buttons = [],
     text_align = "left",
+    theme,
   }) {
     let container = this.createContainer();
-    let content_box = this.createContentBox();
-    let alert_title = this.createAlertTitle(title);
+    let content_box = this.createContentBox(theme);
+    let alert_title = this.createAlertTitle(title, theme);
     let alert_message = this.createAlertMessage(
       message,
       type,
       html,
-      text_align
+      text_align,
+      theme
     );
-    let header = this.createHeader(alert_title, container);
+    let header = this.createHeader(alert_title, container, theme);
 
-    let button_group = this.createButtonGroup(buttons, container);
+    let button_group = this.createButtonGroup(buttons, container, theme);
 
     return { container, content_box, alert_message, header, button_group };
   }
@@ -169,13 +174,26 @@ class DNDAlert {
   classListLoader() {
     this.CLASS_LIST = {
       container: "dnd-alert-container",
-      content: "dnd-alert-content-box",
-      title: "dnd-alert-title",
-      message: "dnd-alert-message",
-      close_button: "dnd-alert-close-button",
-      header: "dnd-alert-header",
-      svg: "dnd-alert-svg",
-      button_group: "dnd-alert-button-group",
+      white: {
+        content: "dnd-alert-content-box",
+        title: "dnd-alert-title",
+        message: "dnd-alert-message",
+        close_button: "dnd-alert-close-button",
+        header: "dnd-alert-header",
+        svg: "dnd-alert-svg",
+        button_group: "dnd-alert-button-group",
+        button: "dnd-alert-default-button",
+      },
+      dark: {
+        content: "dnd-alert-content-box-dark",
+        title: "dnd-alert-title-dark",
+        message: "dnd-alert-message-dark",
+        close_button: "dnd-alert-close-button-dark",
+        header: "dnd-alert-header-dark",
+        svg: "dnd-alert-svg-dark",
+        button_group: "dnd-alert-button-group-dark",
+        button: "dnd-alert-default-button-dark",
+      },
     };
   }
 
@@ -199,6 +217,9 @@ class DNDAlert {
       button_text: this.ERROR_PREFIX + "Button text is required.",
       button_click: this.ERROR_PREFIX + "Button click is required.",
       button_click_type: this.ERROR_PREFIX + "Button click must be a function.",
+      theme:
+        this.ERROR_PREFIX +
+        "Theme is not valid. Theme must be one of these: white,dark",
     };
     this.ERROR_PROCESSOR = [
       {
@@ -227,40 +248,55 @@ class DNDAlert {
           throw new Error(this.ERROR_LIST.type);
         },
       },
+      {
+        condition: eval(
+          "props.theme && !Object.values(this.THEME_ENUM).includes(props.theme)"
+        ),
+        success: () => {
+          throw new Error(this.ERROR_LIST.theme);
+        },
+      },
     ];
   }
 
-  svgLoader() {
-    this.TYPE_LIST = ["success", "error", "warning", "info"];
+  svgLoader(theme) {
     this.SVG_COLOR_LIST = {
-      success: "#0ca678",
-      error: "#e74c3c",
-      warning: "#fab005",
-      info: "#3498db",
+      white: {
+        success: "#0ca678",
+        error: "#e74c3c",
+        warning: "#fab005",
+        info: "#3498db",
+      },
+      dark: {
+        success: "#40c057",
+        error: "#ff6b6b",
+        warning: "#fcc419",
+        info: "#3bc9db",
+      },
     };
     this.SVG_LIST = {
       success: ` 
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=${this.SVG_COLOR_LIST.success} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=${this.SVG_COLOR_LIST[theme].success} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle">
       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
       <polyline points="22 4 12 14.01 9 11.01"></polyline>
       </svg>
       `,
       error: `
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=${this.SVG_COLOR_LIST.error} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=${this.SVG_COLOR_LIST[theme].error} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
       <circle cx="12" cy="12" r="10"></circle>
       <line x1="15" y1="9" x2="9" y2="15"></line>
       <line x1="9" y1="9" x2="15" y2="15"></line>
       </svg>
       `,
       warning: `
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=${this.SVG_COLOR_LIST.warning} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=${this.SVG_COLOR_LIST[theme].warning} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle">
       <circle cx="12" cy="12" r="10"></circle>
       <line x1="12" y1="8" x2="12" y2="12"></line>
       <line x1="12" y1="16" x2="12.01" y2="16"></line>
       </svg>
       `,
       info: `
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=${this.SVG_COLOR_LIST.info} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=${this.SVG_COLOR_LIST[theme].info} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
       <circle cx="12" cy="12" r="10"></circle>
       <line x1="12" y1="16" x2="12" y2="12"></line>
       <line x1="12" y1="8" x2="12.01" y2="8"></line>
@@ -277,20 +313,45 @@ class DNDAlert {
     this.BODY.style.overflow = ENUM_VALUE;
   }
 
-  PRE_INIT(props) {
+  enumLoader() {
     this.OVERFLOW_ENUM = {
       HIDDEN: "hidden",
       AUTO: "auto",
     };
+    this.THEME_ENUM = {
+      WHITE: "white",
+      DARK: "dark",
+    };
+    this.TYPE_LIST = ["success", "error", "warning", "info"];
+  }
+
+  themeSetter(theme) {
+    switch (theme) {
+      case this.THEME_ENUM.WHITE:
+        this.THEME = this.THEME_ENUM.WHITE;
+        break;
+      case this.THEME_ENUM.DARK:
+        this.THEME = this.THEME_ENUM.DARK;
+        break;
+      default:
+        this.THEME = this.THEME_ENUM.WHITE;
+        break;
+    }
+  }
+
+  PRE_INIT(props) {
+    this.enumLoader();
     this.classListLoader();
-    this.svgLoader();
+    this.themeSetter(props.theme);
+    this.svgLoader(this.THEME);
     this.errorOptionsLoader(props);
+
     this.BODY = this.getBodyElement(props.portalElement);
   }
 
   INIT(props) {
     const { container, content_box, alert_message, header, button_group } =
-      this.createMainElements(props);
+      this.createMainElements({ ...props, theme: this.THEME });
 
     this.appendChild(content_box, [header, alert_message]);
     if (button_group) {

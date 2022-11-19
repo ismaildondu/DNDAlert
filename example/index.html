@@ -32,12 +32,12 @@ height: 1890px;
     title: "Test Alert",
     message:
       "DNDAlert is a simple JavaScript library alert for web developers.",
-    type: "warning",
+    type: "success",
     html: false,
     buttons: [
       {
         text: "Ok",
-        class: "btn btn-primary",
+       
         click: (bag) => {
           alert("Ok button clicked");
         },
@@ -52,6 +52,8 @@ height: 1890px;
     closeBackgroundClick: true,
     portalElement: document.querySelector("body"),
     text_align: "center",
+    theme:"dark",
+   
   });
 }
 
