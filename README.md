@@ -10,6 +10,7 @@ by Ismail Dondu (İsmail Döndü)
 - Callback bag
 - Responsive
 - Animation
+- Theme (DARK and White)
 
 ## Simple Usage
 
@@ -56,6 +57,7 @@ by Ismail Dondu (İsmail Döndü)
     closeBackgroundClick: true,
     portalElement: document.querySelector("#modal"),
     text_align: "center",
+    theme:"dark",
   });
 ```
 - **[html]**
@@ -75,7 +77,7 @@ by Ismail Dondu (İsmail Döndü)
  * [**closeBackgroundClick**] If true, clicking (not Modal) the background  closes the Modal
  * [**portalElement**] To call a modal on an element other than body
  * [**text_align**] Css property of message
-
+ * [**theme**] Theme (dark AND white)
 
 
 
@@ -97,6 +99,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 | closeBackgroundClick | true |
 | type | info |
 | buttons[] > class | dnd-alert-default-button |
+| theme | | white |
 
 ## IMG
 ![Screenshot_4](https://user-images.githubusercontent.com/49169815/202852747-a4c13be6-aa2c-46e7-949c-cb8be621b355.png)
