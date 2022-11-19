@@ -10,7 +10,7 @@ by Ismail Dondu (İsmail Döndü)
 - Callback bag
 - Responsive
 - Animation
-- Theme (DARK and White)
+- Theme (dark AND white)
 
 ## Simple Usage
 
