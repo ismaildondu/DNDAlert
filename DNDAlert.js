@@ -274,7 +274,8 @@ class DNDAlert {
       button_click_type: this.ERROR_PREFIX + "Button click must be a function.",
       theme:
         this.ERROR_PREFIX +
-        "Theme is not valid. Theme must be one of these: white,dark",
+        "Theme is not valid. Theme must be one of these: " +
+        Object.values(this.THEME_ENUM).join(", "),
     };
     this.ERROR_PROCESSOR = [
       {
