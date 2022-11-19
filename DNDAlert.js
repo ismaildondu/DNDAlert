@@ -368,7 +368,7 @@ class DNDAlert {
   }
   setBodyOverflow(ENUM_VALUE) {
     if (Object.values(this.OVERFLOW_ENUM).includes(ENUM_VALUE)) {
-      document.body.style.overflow = ENUM_VALUE;
+      this.BODY.style.overflow = ENUM_VALUE;
     } else {
       throw new Error(this.ERROR_LIST.overflow);
     }
