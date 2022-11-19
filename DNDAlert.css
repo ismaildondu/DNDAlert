@@ -22,14 +22,13 @@
 }
 .dnd-alert-content-box{
         
-        width: 400px;
-        height: min-content;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        
-
-        animation: modalAnimation 0.5s ease-in-out;
+    width: 400px;
+    height: min-content;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    animation: modalAnimation 0.5s ease-in-out;
+   
 }
 .dnd-alert-title{
     font-size: 16px;
