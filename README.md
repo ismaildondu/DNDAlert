@@ -98,5 +98,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 | buttons[] > class | dnd-alert-default-button |
 
 ## IMG
+![Screenshot_4](https://user-images.githubusercontent.com/49169815/202852747-a4c13be6-aa2c-46e7-949c-cb8be621b355.png)
+![Screenshot_5](https://user-images.githubusercontent.com/49169815/202852759-3a845bfd-9c14-468d-b9d4-ee5395bf7fe2.png)
 
 
