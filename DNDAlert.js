@@ -276,6 +276,7 @@ class DNDAlert {
         this.ERROR_PREFIX +
         "Theme is not valid. Theme must be one of these: " +
         Object.values(this.THEME_ENUM).join(", "),
+      overflow: this.ERROR_PREFIX + "Overflow is not valid.",
     };
     this.ERROR_PROCESSOR = [
       {
@@ -366,6 +367,10 @@ class DNDAlert {
     containerRef.remove();
   }
   setBodyOverflow(ENUM_VALUE) {
-    this.BODY.style.overflow = ENUM_VALUE;
+    if (Object.values(this.OVERFLOW_ENUM).includes(ENUM_VALUE)) {
+      document.body.style.overflow = ENUM_VALUE;
+    } else {
+      throw new Error(this.ERROR_LIST.overflow);
+    }
   }
 }
