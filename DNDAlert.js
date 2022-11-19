@@ -154,7 +154,7 @@ class DNDAlert {
     }
   }
 
-  containerClickClose(containerRef, closeBackgroundClick) {
+  containerClickClose(containerRef, closeBackgroundClick = true) {
     if (closeBackgroundClick) {
       containerRef.addEventListener("click", (e) => {
         if (e.target.classList.contains(this.CLASS_LIST.container)) {
