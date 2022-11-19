@@ -7,7 +7,7 @@ class DNDAlert {
   constructor(props) {
     this.PRE_INIT(props);
     this.errorControl(props);
-    this.DRAW(this.INIT(props));
+    this.DRAW(this.INIT(props), props.onOpen);
   }
 
   INIT(props) {
@@ -24,9 +24,12 @@ class DNDAlert {
 
     return container;
   }
-  DRAW(containerRef) {
+  DRAW(containerRef, onOpen) {
     this.setBodyOverflow(this.OVERFLOW_ENUM.HIDDEN);
     this.appendChild(this.BODY, [containerRef]);
+    if (onOpen) {
+      onOpen(this.bagCreator(containerRef));
+    }
   }
 
   enumLoader() {
@@ -56,6 +59,8 @@ class DNDAlert {
   }
 
   PRE_INIT(props) {
+    this.CREATED_TIME = new Date().getTime();
+
     this.enumLoader();
     this.classListLoader();
     this.errorOptionsLoader(props);
@@ -129,14 +134,21 @@ class DNDAlert {
     return header;
   }
 
-  createButtonGroup(buttons, containerRef, theme) {
-    if (buttons.length === 0) return false;
-
+  bagCreator(containerRef) {
     const BAG_ELEMENT = {
       CLOSE_MODAL: () => {
         this.removeContainer(containerRef);
       },
+      PROPETIES: {
+        CREATED_TIME: this.CREATED_TIME,
+      },
     };
+
+    return BAG_ELEMENT;
+  }
+
+  createButtonGroup(buttons, containerRef, theme) {
+    if (buttons.length === 0) return false;
 
     let buttonGroup = document.createElement("div");
     buttonGroup.classList.add(this.CLASS_LIST[theme].button_group);
@@ -147,7 +159,7 @@ class DNDAlert {
       buttonElement.innerText = button.text;
       buttonElement.className = className;
       buttonElement.addEventListener("click", () => {
-        button.click(BAG_ELEMENT);
+        button.click(this.bagCreator(containerRef));
       });
       buttonGroup.appendChild(buttonElement);
     });
@@ -277,6 +289,7 @@ class DNDAlert {
         "Theme is not valid. Theme must be one of these: " +
         Object.values(this.THEME_ENUM).join(", "),
       overflow: this.ERROR_PREFIX + "Overflow is not valid.",
+      onOpen: this.ERROR_PREFIX + "onOpen must be a function.",
     };
     this.ERROR_PROCESSOR = [
       {
@@ -311,6 +324,12 @@ class DNDAlert {
         ),
         success: () => {
           throw new Error(this.ERROR_LIST.theme);
+        },
+      },
+      {
+        condition: eval("props.onOpen && typeof props.onOpen !== 'function'"),
+        success: () => {
+          throw new Error(this.ERROR_LIST.onOpen);
         },
       },
     ];
