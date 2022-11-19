@@ -12,11 +12,7 @@ class DNDAlert {
 
   createContainer() {
     let container = document.createElement("div");
-<<<<<<< HEAD
     container.classList.add(this.CLASS_LIST.container);
-=======
-    container.classList.add(CLASS_NAME);
->>>>>>> 3246c9e51ff3ece8e71e74a7ff1f1f8b11c5fac7
     return container;
   }
   createContentBox(theme) {
@@ -221,12 +217,9 @@ class DNDAlert {
       button_text: this.ERROR_PREFIX + "Button text is required.",
       button_click: this.ERROR_PREFIX + "Button click is required.",
       button_click_type: this.ERROR_PREFIX + "Button click must be a function.",
-<<<<<<< HEAD
       theme:
         this.ERROR_PREFIX +
         "Theme is not valid. Theme must be one of these: white,dark",
-=======
->>>>>>> 3246c9e51ff3ece8e71e74a7ff1f1f8b11c5fac7
     };
     this.ERROR_PROCESSOR = [
       {
