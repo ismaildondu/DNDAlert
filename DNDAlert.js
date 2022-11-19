@@ -284,31 +284,3 @@ class DNDAlert {
     this.appendChild(this.BODY, [containerRef]);
   }
 }
-
-function example() {
-  const DNDALERT = new DNDAlert({
-    title: "Test Alert",
-    message:
-      "DNDAlert is a simple JavaScript library alert for web developers.",
-    type: "warning",
-    html: false,
-    buttons: [
-      {
-        text: "Ok",
-        class: "btn btn-primary",
-        click: (bag) => {
-          alert("Ok button clicked");
-        },
-      },
-      {
-        text: "Cancel",
-        click: (bag) => {
-          bag.CLOSE_MODAL();
-        },
-      },
-    ],
-    closeBackgroundClick: true,
-    portalElement: document.querySelector("body"),
-    text_align: "center",
-  });
-}
