@@ -1,43 +1,40 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,500;1,700;1,900&display=swap');
 
 
 /* WHITE */
-.dnd-alert-container{
+.dnd-alert-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 9999;
-    background-color: rgba(0,0,0,0.5);
-    display:flex;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
     justify-content: center;
     align-items: top;
     padding-top: 100px;
     font-family: 'Roboto', sans-serif;
     overflow: auto;
-
-
 }
-.dnd-alert-content-box{
-        
+
+.dnd-alert-content-box {
     width: 400px;
     height: min-content;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     animation: modalAnimation 0.5s ease-in-out;
-   
 }
-.dnd-alert-title{
+
+.dnd-alert-title {
     font-size: 16px;
     font-weight: bold;
     color: #333;
     font-weight: 700;
-    
 }
-.dnd-alert-header{
+
+.dnd-alert-header {
     padding: 10px;
     font-size: 14px;
     color: #333;
@@ -46,9 +43,9 @@
     align-items: center;
     background-color: #f5f5f5;
     border-bottom: 1px solid #ccc;
-  
 }
-.dnd-alert-close-button{
+
+.dnd-alert-close-button {
     width: 20px;
     height: 20px;
     background-color: #f5f5f5;
@@ -58,7 +55,8 @@
     align-items: center;
     cursor: pointer;
 }
-.dnd-alert-message{
+
+.dnd-alert-message {
 
     font-size: 14px;
     color: #333;
@@ -71,20 +69,21 @@
     overflow: auto;
 }
 
-.dnd-alert-svg{
+.dnd-alert-svg {
     display: flex;
     justify-content: center;
     align-items: center;
     animation: svgAnimation 0.5s ease-in-out;
     margin-bottom: 20px;
 }
-.dnd-alert-svg svg{
+
+.dnd-alert-svg svg {
     width: 70px;
     height: 70px;
     animation: svgLoadingAnimation 0.5s ease-in-out;
 }
 
-.dnd-alert-button-group{
+.dnd-alert-button-group {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
@@ -93,11 +92,12 @@
     border-top: 1px solid #ccc;
     gap: 10px;
 }
-.dnd-alert-button-group > button{
+
+.dnd-alert-button-group>button {
     width: 100%;
 }
 
-.dnd-alert-default-button{
+.dnd-alert-default-button {
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     color: #333;
@@ -108,28 +108,31 @@
     cursor: pointer;
     transition: 0.3s background-color;
 }
-.dnd-alert-default-button:hover{
+
+.dnd-alert-default-button:hover {
     background-color: rgb(231, 231, 231);
 }
 
 /* DARK */
 
 
-.dnd-alert-content-box-dark{
-        width: 400px;
-        height: min-content;
-        background-color: #333;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        animation: modalAnimation 0.5s ease-in-out;
+.dnd-alert-content-box-dark {
+    width: 400px;
+    height: min-content;
+    background-color: #333;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: modalAnimation 0.5s ease-in-out;
 }
-.dnd-alert-title-dark{
+
+.dnd-alert-title-dark {
     font-size: 16px;
     font-weight: bold;
     color: #fff;
     font-weight: 700;
 }
-.dnd-alert-header-dark{
+
+.dnd-alert-header-dark {
     padding: 10px;
     font-size: 14px;
     color: #fff;
@@ -139,7 +142,8 @@
     background-color: #222;
     border-bottom: 1px solid #ccc;
 }
-.dnd-alert-close-button-dark{
+
+.dnd-alert-close-button-dark {
     width: 20px;
     height: 20px;
     background-color: #222;
@@ -149,7 +153,8 @@
     align-items: center;
     cursor: pointer;
 }
-.dnd-alert-message-dark{
+
+.dnd-alert-message-dark {
     font-size: 14px;
     color: #fff;
     display: flex;
@@ -160,19 +165,22 @@
     align-items: center;
     overflow: auto;
 }
-.dnd-alert-svg-dark{
+
+.dnd-alert-svg-dark {
     display: flex;
     justify-content: center;
     align-items: center;
     animation: svgAnimation 0.5s ease-in-out;
     margin-bottom: 20px;
 }
-.dnd-alert-svg-dark svg{
+
+.dnd-alert-svg-dark svg {
     width: 70px;
     height: 70px;
     animation: svgLoadingAnimation 0.5s ease-in-out;
 }
-.dnd-alert-button-group-dark{
+
+.dnd-alert-button-group-dark {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
@@ -181,10 +189,12 @@
     border-top: 1px solid #ccc;
     gap: 10px;
 }
-.dnd-alert-button-group-dark > button{
+
+.dnd-alert-button-group-dark>button {
     width: 100%;
 }
-.dnd-alert-default-button-dark{
+
+.dnd-alert-default-button-dark {
     background-color: #222;
     border: 1px solid #ccc;
     color: #fff;
@@ -195,83 +205,93 @@
     cursor: pointer;
     transition: 0.3s background-color;
 }
-.dnd-alert-default-button-dark:hover{
+
+.dnd-alert-default-button-dark:hover {
     background-color: rgb(31, 31, 31);
 }
 
 
 @keyframes modalAnimation {
     0% {
-      opacity: 0;
-      transform: translateY(100px);
+        opacity: 0;
+        transform: translateY(100px);
     }
+
     100% {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
-  
-  @keyframes svgAnimation {
-      0% {
+}
+
+@keyframes svgAnimation {
+    0% {
         opacity: 0;
         transform: scale(0.5);
-      }
-      100% {
+    }
+
+    100% {
         opacity: 1;
         transform: scale(1);
-      }
     }
-    
-    @keyframes svgLoadingAnimation {
-        0% {
-             stroke-dashoffset: 0;
-            transform: rotate(0deg);
-        }
-        100% {
-            stroke-dashoffset: 1000;
-            transform: rotate(360deg);
-        }
+}
+
+@keyframes svgLoadingAnimation {
+    0% {
+        stroke-dashoffset: 0;
+        transform: rotate(0deg);
     }
+
+    100% {
+        stroke-dashoffset: 1000;
+        transform: rotate(360deg);
+    }
+}
 
 @media screen and (max-width: 700px) {
-    .dnd-alert-container{
+    .dnd-alert-container {
         padding-top: 0;
-        
+
     }
-    .dnd-alert-content-box{
+
+    .dnd-alert-content-box {
         width: 100%;
         height: 100%;
         border-radius: 0;
-        box-shadow: none;    
+        box-shadow: none;
     }
-    .dnd-alert-header{
+
+    .dnd-alert-header {
         border-bottom: none;
     }
-    .dnd-alert-button-group{
+
+    .dnd-alert-button-group {
         border-top: none;
     }
-    .dnd-alert-button-group{
+
+    .dnd-alert-button-group {
         display: flex;
         flex-direction: column;
     }
 
-    .dnd-alert-content-box-dark{
+    .dnd-alert-content-box-dark {
         width: 100%;
         height: 100%;
         border-radius: 0;
-        box-shadow: none;    
+        box-shadow: none;
     }
-    .dnd-alert-header-dark{
+
+    .dnd-alert-header-dark {
         border-bottom: none;
     }
-    .dnd-alert-button-group-dark{
+
+    .dnd-alert-button-group-dark {
         border-top: none;
     }
-    .dnd-alert-button-group-dark{
+
+    .dnd-alert-button-group-dark {
         display: flex;
         flex-direction: column;
     }
-    
+
 
 }
-    
