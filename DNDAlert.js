@@ -58,9 +58,9 @@ class DNDAlert {
   PRE_INIT(props) {
     this.enumLoader();
     this.classListLoader();
+    this.errorOptionsLoader(props);
     this.themeLoader(props.theme);
     this.svgLoader(this.THEME);
-    this.errorOptionsLoader(props);
 
     this.BODY = this.getBodyElement(props.portalElement);
   }
