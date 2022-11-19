@@ -3,7 +3,7 @@
 DNDAlert is a simple JavaScript library alert for web developers.
 by Ismail Dondu (İsmail Döndü) 
 ## Features
-- SVG Warning Messages ( success 🟢 , error 🔴 , warning 🟠, info 🔵 )
+- SVG Types ( success 🟢 , error 🔴 , warning 🟠, info 🔵 )
 - Unlimited button support
 - HTML message support
 - Easy to set up and use
