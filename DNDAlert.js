@@ -173,8 +173,8 @@ class DNDAlert {
       let buttonElement = document.createElement("button");
       buttonElement.innerText = button.text;
       buttonElement.className = className;
-      buttonElement.addEventListener("click", () => {
-        button.click(this.bagCreator(containerRef));
+      buttonElement.addEventListener("click", async () => {
+        await button.click(this.bagCreator(containerRef));
       });
       buttonGroup.appendChild(buttonElement);
     });
