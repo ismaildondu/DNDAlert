@@ -7,7 +7,7 @@ class DNDAlert {
   constructor(props) {
     this.PRE_INIT(props);
     this.errorControl(props);
-    this.DRAW(this.INIT(props), props.onOpen);
+    this.DRAW(this.INIT(props), props.onOpen, props.autoCloseDuration);
   }
 
   INIT(props) {
@@ -24,11 +24,20 @@ class DNDAlert {
 
     return container;
   }
-  DRAW(containerRef, onOpen) {
+  DRAW(containerRef, onOpen, autoCloseDuration) {
     this.setBodyOverflow(this.OVERFLOW_ENUM.HIDDEN);
     this.appendChild(this.BODY, [containerRef]);
     if (onOpen) {
       onOpen(this.bagCreator(containerRef));
+    }
+    if (
+      autoCloseDuration &&
+      Number.isInteger(autoCloseDuration) &&
+      autoCloseDuration > 0
+    ) {
+      setTimeout(() => {
+        this.removeContainer(containerRef);
+      }, autoCloseDuration);
     }
   }
 
@@ -75,9 +84,10 @@ class DNDAlert {
     container.classList.add(this.CLASS_LIST.container);
     return container;
   }
-  createContentBox(theme) {
+  createContentBox(theme, opacity) {
     let content_box = document.createElement("div");
     content_box.classList.add(this.CLASS_LIST[theme].content);
+    content_box.style.opacity = opacity;
     return content_box;
   }
   createAlertTitle(title, theme) {
@@ -176,9 +186,10 @@ class DNDAlert {
     buttons = [],
     text_align = "left",
     theme,
+    opacity = 1,
   }) {
     let container = this.createContainer();
-    let content_box = this.createContentBox(theme);
+    let content_box = this.createContentBox(theme, opacity);
     let alert_title = this.createAlertTitle(title, theme);
     let alert_message = this.createAlertMessage(
       message,
@@ -291,6 +302,7 @@ class DNDAlert {
         Object.values(this.THEME_ENUM).join(", "),
       overflow: this.ERROR_PREFIX + "Overflow is not valid.",
       onOpen: this.ERROR_PREFIX + "onOpen must be a function.",
+      opacity: this.ERROR_PREFIX + "Opacity must be between 0.1 and 1.",
     };
     this.ERROR_PROCESSOR = [
       {
@@ -331,6 +343,14 @@ class DNDAlert {
         condition: eval("props.onOpen && typeof props.onOpen !== 'function'"),
         success: () => {
           throw new Error(this.ERROR_LIST.onOpen);
+        },
+      },
+      {
+        condition: eval(
+          "props.opacity && (props.opacity < 0.1 || props.opacity > 1)"
+        ),
+        success: () => {
+          throw new Error(this.ERROR_LIST.opacity);
         },
       },
     ];
