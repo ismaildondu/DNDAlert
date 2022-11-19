@@ -9,6 +9,7 @@ by Ismail Dondu (İsmail Döndü)
 - Easy to set up and use
 - Callback bag
 - Responsive
+- Animation
 
 ## Simple Usage
 
