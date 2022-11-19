@@ -20,7 +20,6 @@ by Ismail Dondu (İsmail Döndü)
 const Alert = new DNDAlert({
   title: "Test Alert",
   message: "DNDAlert is a simple JavaScript library alert for web developers.",
-  type: "warning",
 });
 ```
 
@@ -28,8 +27,6 @@ const Alert = new DNDAlert({
   - Null values ​​cannot be entered. This is the title of the alert
 - **[message]**
   - Null values ​​cannot be entered. The content of the alert.
-- **[type]**
-  - success,error,warning and info
 
 ## Usage
 
@@ -82,6 +79,7 @@ const Alert = new DNDAlert({
          },
       ```
 
+* [**type**] success,error,warning and info | If it is not entered, the type will not be displayed, only the message will be show.
 * [**closeBackgroundClick**] If true, clicking (not Modal) the background closes the Modal
 * [**portalElement**] To call a modal on an element other than body
 * [**text_align**] Css property of message
@@ -105,7 +103,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 | portalElement        | document.body            |
 | html                 | false                    |
 | closeBackgroundClick | true                     |
-| type                 | info                     |
+| type                 | false                    |
 | buttons[] > class    | dnd-alert-default-button |
 | theme                | white                    |
 | opacity              | 1                        |

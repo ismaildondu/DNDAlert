@@ -116,7 +116,7 @@ class DNDAlert {
 
     alert_message.style.textAlign = text_align;
 
-    alert_message.prepend(this.createSvgElement(type, theme));
+    if (type) alert_message.prepend(this.createSvgElement(type, theme));
 
     return alert_message;
   }
@@ -181,7 +181,7 @@ class DNDAlert {
   createMainElements({
     title,
     message,
-    type = this.TYPE_LIST[3], // [0] success, [1] error, [2] warning, [3] info -> enumLoader() -> TYPE_LIST
+    type = false, // [0] success, [1] error, [2] warning, [3] info -> enumLoader() -> TYPE_LIST
     html = false,
     buttons = [],
     text_align = "left",
