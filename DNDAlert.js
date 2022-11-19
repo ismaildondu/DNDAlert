@@ -325,7 +325,7 @@ class DNDAlert {
     this.TYPE_LIST = ["success", "error", "warning", "info"];
   }
 
-  themeSetter(theme) {
+  themeLoader(theme) {
     switch (theme) {
       case this.THEME_ENUM.WHITE:
         this.THEME = this.THEME_ENUM.WHITE;
@@ -342,7 +342,7 @@ class DNDAlert {
   PRE_INIT(props) {
     this.enumLoader();
     this.classListLoader();
-    this.themeSetter(props.theme);
+    this.themeLoader(props.theme);
     this.svgLoader(this.THEME);
     this.errorOptionsLoader(props);
 
