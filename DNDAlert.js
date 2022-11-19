@@ -10,6 +10,61 @@ class DNDAlert {
     this.DRAW(this.INIT(props));
   }
 
+  INIT(props) {
+    const { container, content_box, alert_message, header, button_group } =
+      this.createMainElements({ ...props, theme: this.THEME });
+
+    this.appendChild(content_box, [header, alert_message]);
+    if (button_group) {
+      this.appendChild(content_box, [button_group]);
+    }
+    this.appendChild(container, [content_box]);
+
+    this.containerClickClose(container, props.closeBackgroundClick);
+
+    return container;
+  }
+  DRAW(containerRef) {
+    this.setBodyOverflow(this.OVERFLOW_ENUM.HIDDEN);
+    this.appendChild(this.BODY, [containerRef]);
+  }
+
+  enumLoader() {
+    this.OVERFLOW_ENUM = {
+      HIDDEN: "hidden",
+      AUTO: "auto",
+    };
+    this.THEME_ENUM = {
+      WHITE: "white",
+      DARK: "dark",
+    };
+    this.TYPE_LIST = ["success", "error", "warning", "info"];
+  }
+
+  themeLoader(theme) {
+    switch (theme) {
+      case this.THEME_ENUM.WHITE:
+        this.THEME = this.THEME_ENUM.WHITE;
+        break;
+      case this.THEME_ENUM.DARK:
+        this.THEME = this.THEME_ENUM.DARK;
+        break;
+      default:
+        this.THEME = this.THEME_ENUM.WHITE;
+        break;
+    }
+  }
+
+  PRE_INIT(props) {
+    this.enumLoader();
+    this.classListLoader();
+    this.themeLoader(props.theme);
+    this.svgLoader(this.THEME);
+    this.errorOptionsLoader(props);
+
+    this.BODY = this.getBodyElement(props.portalElement);
+  }
+
   createContainer() {
     let container = document.createElement("div");
     container.classList.add(this.CLASS_LIST.container);
@@ -311,60 +366,5 @@ class DNDAlert {
   }
   setBodyOverflow(ENUM_VALUE) {
     this.BODY.style.overflow = ENUM_VALUE;
-  }
-
-  enumLoader() {
-    this.OVERFLOW_ENUM = {
-      HIDDEN: "hidden",
-      AUTO: "auto",
-    };
-    this.THEME_ENUM = {
-      WHITE: "white",
-      DARK: "dark",
-    };
-    this.TYPE_LIST = ["success", "error", "warning", "info"];
-  }
-
-  themeLoader(theme) {
-    switch (theme) {
-      case this.THEME_ENUM.WHITE:
-        this.THEME = this.THEME_ENUM.WHITE;
-        break;
-      case this.THEME_ENUM.DARK:
-        this.THEME = this.THEME_ENUM.DARK;
-        break;
-      default:
-        this.THEME = this.THEME_ENUM.WHITE;
-        break;
-    }
-  }
-
-  PRE_INIT(props) {
-    this.enumLoader();
-    this.classListLoader();
-    this.themeLoader(props.theme);
-    this.svgLoader(this.THEME);
-    this.errorOptionsLoader(props);
-
-    this.BODY = this.getBodyElement(props.portalElement);
-  }
-
-  INIT(props) {
-    const { container, content_box, alert_message, header, button_group } =
-      this.createMainElements({ ...props, theme: this.THEME });
-
-    this.appendChild(content_box, [header, alert_message]);
-    if (button_group) {
-      this.appendChild(content_box, [button_group]);
-    }
-    this.appendChild(container, [content_box]);
-
-    this.containerClickClose(container, props.closeBackgroundClick);
-
-    return container;
-  }
-  DRAW(containerRef) {
-    this.setBodyOverflow(this.OVERFLOW_ENUM.HIDDEN);
-    this.appendChild(this.BODY, [containerRef]);
   }
 }
