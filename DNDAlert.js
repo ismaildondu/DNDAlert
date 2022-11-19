@@ -141,6 +141,7 @@ class DNDAlert {
       },
       PROPETIES: {
         CREATED_TIME: this.CREATED_TIME,
+        THEME: this.THEME,
       },
     };
 
