@@ -5,9 +5,7 @@ by İsmail Döndü - 2023
 
 class DNDAlert {
   constructor(props) {
-    this.PRE_INIT(props);
-    this.errorControl(props);
-    this.DRAW(this.INIT(props), props.onOpen, props.autoCloseDuration);
+    this.STARTER(props);
   }
 
   INIT(props) {
@@ -77,6 +75,12 @@ class DNDAlert {
     this.svgLoader(this.THEME);
 
     this.BODY = this.getBodyElement(props.portalElement);
+  }
+
+  STARTER(props) {
+    this.PRE_INIT(props);
+    this.errorControl(props);
+    this.DRAW(this.INIT(props), props.onOpen, props.autoCloseDuration);
   }
 
   createContainer() {
