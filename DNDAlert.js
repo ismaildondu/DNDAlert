@@ -31,6 +31,7 @@ class ALERT_CONTEXT {
       closeBackgroundClick: true,
       type: false,
       html: false,
+      autoCloseDuration: false,
       buttons: [],
       text_align: "left",
       opacity: 1,
