@@ -241,7 +241,7 @@ class DNDAlert extends ALERT_CONTEXT {
     let title = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.title);
     let alert_title = document.createElement("h1");
     alert_title.classList.add(this.CLASS_LIST[this.THEME].title);
-    alert_title.innerHTML = title;
+    alert_title.innerText = title;
     this.CONTEXT_PROVIDER_SET("alert_titleRef", alert_title);
   }
 
