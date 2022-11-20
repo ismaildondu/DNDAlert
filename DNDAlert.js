@@ -109,6 +109,10 @@ class ALERT_CONTEXT {
         if (this._context[key] === undefined)
           return this.CONTEXT_DEFAULT_VALUES.button_groupRef;
         return this._context[key];
+      case this.CONTEXT_QUERY_NAME.autoCloseDuration:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.autoCloseDuration;
+        return this._context[key];
       default:
         return this._context[key];
     }
