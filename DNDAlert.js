@@ -6,6 +6,7 @@ by İsmail Döndü - 2023
 class ALERT_CONTEXT {
   constructor(props = {}) {
     this._context = { ...props };
+
     this.CONTEXT_QUERY_NAME = {
       message: "message",
       title: "title",
@@ -180,7 +181,7 @@ class DNDAlert extends ALERT_CONTEXT {
       autoCloseDuration > 0
     ) {
       setTimeout(() => {
-        this.removeContainer();
+        if (!this.IS_CLOSE) this.removeContainer();
       }, autoCloseDuration);
     }
   }
@@ -213,6 +214,7 @@ class DNDAlert extends ALERT_CONTEXT {
   }
 
   PRE_INIT() {
+    this.IS_CLOSE = false; //  autoCloseDuration and onClose avoid conflict
     this.CREATED_TIME = new Date().getTime();
 
     this.enumLoader();
@@ -572,8 +574,12 @@ class DNDAlert extends ALERT_CONTEXT {
   removeContainer() {
     this.setBodyOverflow(this.OVERFLOW_ENUM.AUTO);
     this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.containerRef).remove();
+
     let onClose = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.onClose);
-    if (onClose) onClose(this.bagCreator());
+    if (onClose && !this.IS_CLOSE) {
+      this.IS_CLOSE = true;
+      onClose(this.bagCreator());
+    }
   }
   setBodyOverflow(ENUM_VALUE) {
     if (Object.values(this.OVERFLOW_ENUM).includes(ENUM_VALUE)) {
