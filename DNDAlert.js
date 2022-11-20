@@ -3,30 +3,170 @@ DNDAlert is a simple JavaScript library alert for web developers.
 by İsmail Döndü - 2023
 */
 
-class DNDAlert {
-  constructor(props) {
-    this.STARTER(props);
+class ALERT_CONTEXT {
+  constructor(props = {}) {
+    this._context = { ...props };
+    this.CONTEXT_QUERY_NAME = {
+      message: "message",
+      title: "title",
+      type: "type",
+      html: "html",
+      buttons: "buttons",
+      closeBackgroundClick: "closeBackgroundClick",
+      portalElement: "portalElement",
+      text_align: "text_align",
+      theme: "theme",
+      onOpen: "onOpen",
+      opacity: "opacity",
+      autoCloseDuration: "autoCloseDuration",
+
+      containerRef: "containerRef",
+      content_boxRef: "content_boxRef",
+      alert_titleRef: "alert_titleRef",
+      alert_messageRef: "alert_messageRef",
+      headerRef: "headerRef",
+      button_groupRef: "button_groupRef",
+    };
+    this.CONTEXT_DEFAULT_VALUES = {
+      closeBackgroundClick: true,
+      type: false,
+      html: false,
+      buttons: [],
+      text_align: "left",
+      opacity: 1,
+      portalElement: document.body,
+
+      containerRef: null,
+      content_boxRef: null,
+      alert_titleRef: null,
+      alert_messageRef: null,
+      headerRef: null,
+      button_groupRef: null,
+    };
   }
 
-  INIT(props) {
-    const { container, content_box, alert_message, header, button_group } =
-      this.createMainElements({ ...props, theme: this.THEME });
+  CONTEXT_QUERY_NAME_CHECKER(key) {
+    if (this.CONTEXT_QUERY_NAME[key] === undefined) return false;
+  }
 
-    this.appendChild(content_box, [header, alert_message]);
-    if (button_group) {
-      this.appendChild(content_box, [button_group]);
+  CONTEXT_PROVIDER_SET(key, value) {
+    this.CONTEXT_QUERY_NAME_CHECKER(key);
+    this._context[key] = value;
+  }
+  CONTEXT_PROVIDER_GET(key) {
+    this.CONTEXT_QUERY_NAME_CHECKER(key);
+    switch (key) {
+      case this.CONTEXT_QUERY_NAME.closeBackgroundClick:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.closeBackgroundClick;
+        return this._context[key];
+      case this.CONTEXT_QUERY_NAME.type:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.type;
+        return this._context[key];
+      case this.CONTEXT_QUERY_NAME.html:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.html;
+        return this._context[key];
+      case this.CONTEXT_QUERY_NAME.buttons:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.buttons;
+        return this._context[key];
+      case this.CONTEXT_QUERY_NAME.text_align:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.text_align;
+        return this._context[key];
+      case this.CONTEXT_QUERY_NAME.opacity:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.opacity;
+        return this._context[key];
+      case this.CONTEXT_QUERY_NAME.portalElement:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.portalElement;
+        return this._context[key];
+      case this.CONTEXT_QUERY_NAME.containerRef:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.containerRef;
+        return this._context[key];
+      case this.CONTEXT_QUERY_NAME.content_boxRef:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.content_boxRef;
+        return this._context[key];
+      case this.CONTEXT_QUERY_NAME.alert_titleRef:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.alert_titleRef;
+        return this._context[key];
+      case this.CONTEXT_QUERY_NAME.alert_messageRef:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.alert_messageRef;
+        return this._context[key];
+      case this.CONTEXT_QUERY_NAME.headerRef:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.headerRef;
+        return this._context[key];
+      case this.CONTEXT_QUERY_NAME.button_groupRef:
+        if (this._context[key] === undefined)
+          return this.CONTEXT_DEFAULT_VALUES.button_groupRef;
+        return this._context[key];
+      default:
+        return this._context[key];
     }
-    this.appendChild(container, [content_box]);
-
-    this.containerClickClose(container, props.closeBackgroundClick);
-
-    return container;
   }
-  DRAW(containerRef, onOpen, autoCloseDuration) {
+  CONTEXT_PROVIDER_REMOVE(key) {
+    this.CONTEXT_QUERY_NAME_CHECKER(key);
+    delete this._context[key];
+  }
+  CONTEXT_PROVIDER_CLEAR() {
+    this._context = {};
+  }
+  CONTEXT_PROVIDER_GET_ALL() {
+    return this._context;
+  }
+}
+
+class DNDAlert extends ALERT_CONTEXT {
+  constructor(props) {
+    super(props); // <- ALERT_CONTEXT
+    this.STARTER();
+  }
+
+  INIT() {
+    this.createMainElements();
+
+    const CONTENT_BOX = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.content_boxRef
+    );
+    const ALERT_MESSAGE = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.alert_messageRef
+    );
+    const CONTAINER = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.containerRef
+    );
+    const HEADER = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.headerRef);
+    const BUTTON_GROUP = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.button_groupRef
+    );
+
+    this.appendChild(CONTENT_BOX, [HEADER, ALERT_MESSAGE]);
+    if (BUTTON_GROUP) {
+      this.appendChild(CONTENT_BOX, [BUTTON_GROUP]);
+    }
+
+    this.appendChild(CONTAINER, [CONTENT_BOX]);
+
+    this.containerClickClose(CONTAINER);
+  }
+  DRAW() {
+    let onOpen = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.onOpen);
+    let autoCloseDuration = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.autoCloseDuration
+    );
     this.setBodyOverflow(this.OVERFLOW_ENUM.HIDDEN);
-    this.appendChild(this.BODY, [containerRef]);
+    this.appendChild(this.BODY, [
+      this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.containerRef),
+    ]);
     if (onOpen) {
-      onOpen(this.bagCreator(containerRef));
+      onOpen(this.bagCreator());
     }
     if (
       autoCloseDuration &&
@@ -34,7 +174,7 @@ class DNDAlert {
       autoCloseDuration > 0
     ) {
       setTimeout(() => {
-        this.removeContainer(containerRef);
+        this.removeContainer();
       }, autoCloseDuration);
     }
   }
@@ -51,7 +191,8 @@ class DNDAlert {
     this.TYPE_LIST = ["success", "error", "warning", "info"];
   }
 
-  themeLoader(theme) {
+  themeLoader() {
+    const theme = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.theme);
     switch (theme) {
       case this.THEME_ENUM.WHITE:
         this.THEME = this.THEME_ENUM.WHITE;
@@ -65,52 +206,63 @@ class DNDAlert {
     }
   }
 
-  PRE_INIT(props) {
+  PRE_INIT() {
     this.CREATED_TIME = new Date().getTime();
 
     this.enumLoader();
     this.classListLoader();
-    this.errorOptionsLoader(props);
-    this.themeLoader(props.theme);
-    this.svgLoader(this.THEME);
+    this.errorOptionsLoader();
+    this.themeLoader();
+    this.svgLoader();
 
-    this.BODY = this.getBodyElement(props.portalElement);
+    this.BODY = this.getBodyElement();
   }
 
-  STARTER(props) {
-    this.PRE_INIT(props);
-    this.errorControl(props);
-    this.DRAW(this.INIT(props), props.onOpen, props.autoCloseDuration);
+  STARTER() {
+    this.PRE_INIT();
+    this.ERROR_CONTROL();
+    this.INIT();
+    this.DRAW();
   }
 
   createContainer() {
     let container = document.createElement("div");
     container.classList.add(this.CLASS_LIST.container);
-    return container;
+    this.CONTEXT_PROVIDER_SET("containerRef", container);
   }
-  createContentBox(theme, opacity) {
+  createContentBox() {
+    let opacity = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.opacity);
     let content_box = document.createElement("div");
-    content_box.classList.add(this.CLASS_LIST[theme].content);
+    content_box.classList.add(this.CLASS_LIST[this.THEME].content);
     content_box.style.opacity = opacity;
-    return content_box;
+    this.CONTEXT_PROVIDER_SET("content_boxRef", content_box);
   }
-  createAlertTitle(title, theme) {
+  createAlertTitle() {
+    let title = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.title);
     let alert_title = document.createElement("h1");
-    alert_title.classList.add(this.CLASS_LIST[theme].title);
+    alert_title.classList.add(this.CLASS_LIST[this.THEME].title);
     alert_title.innerHTML = title;
-    return alert_title;
+    this.CONTEXT_PROVIDER_SET("alert_titleRef", alert_title);
   }
 
-  createSvgElement(type, theme) {
+  createSvgElement() {
+    let type = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.type);
+    if (!type) return;
     let svgDiv = document.createElement("div");
-    svgDiv.classList.add(this.CLASS_LIST[theme].svg);
+    svgDiv.classList.add(this.CLASS_LIST[this.THEME].svg);
     svgDiv.innerHTML = this.SVG_LIST[type];
     return svgDiv;
   }
 
-  createAlertMessage(message, type, html, text_align, theme) {
+  createAlertMessage() {
+    let message = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.message);
+    let type = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.type);
+    let html = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.html);
+    let text_align = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.text_align
+    );
     let alert_message = document.createElement("p");
-    alert_message.classList.add(this.CLASS_LIST[theme].message);
+    alert_message.classList.add(this.CLASS_LIST[this.THEME].message);
 
     if (html) {
       alert_message.innerHTML = message;
@@ -120,38 +272,39 @@ class DNDAlert {
 
     alert_message.style.textAlign = text_align;
 
-    if (type) alert_message.prepend(this.createSvgElement(type, theme));
+    if (type) alert_message.prepend(this.createSvgElement());
 
-    return alert_message;
+    this.CONTEXT_PROVIDER_SET("alert_messageRef", alert_message);
   }
 
-  createTopRightCloseButton(containerRef, theme) {
+  createTopRightCloseButton() {
     let close_button = document.createElement("button");
-    close_button.classList.add(this.CLASS_LIST[theme].close_button);
+    close_button.classList.add(this.CLASS_LIST[this.THEME].close_button);
     close_button.innerHTML = "X";
-    if (theme === this.THEME_ENUM.DARK) {
+    if (this.THEME === this.THEME_ENUM.DARK) {
       close_button.style.color = "#000";
     }
     close_button.addEventListener("click", () => {
-      this.removeContainer(containerRef);
+      this.removeContainer();
     });
     return close_button;
   }
 
-  createHeader(titleRef, containerRef, theme) {
-    let title = titleRef;
+  createHeader() {
     let header = document.createElement("div");
-    header.classList.add(this.CLASS_LIST[theme].header);
-    header.appendChild(title);
-    header.appendChild(this.createTopRightCloseButton(containerRef, theme));
+    header.classList.add(this.CLASS_LIST[this.THEME].header);
+    header.appendChild(
+      this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.alert_titleRef)
+    );
+    header.appendChild(this.createTopRightCloseButton());
 
-    return header;
+    this.CONTEXT_PROVIDER_SET("headerRef", header);
   }
 
-  bagCreator(containerRef) {
+  bagCreator() {
     const BAG_ELEMENT = {
       CLOSE_MODAL: () => {
-        this.removeContainer(containerRef);
+        this.removeContainer();
       },
       PROPETIES: {
         CREATED_TIME: this.CREATED_TIME,
@@ -162,62 +315,46 @@ class DNDAlert {
     return BAG_ELEMENT;
   }
 
-  createButtonGroup(buttons, containerRef, theme) {
+  createButtonGroup() {
+    let buttons = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.buttons);
     if (buttons.length === 0) return false;
 
     let buttonGroup = document.createElement("div");
-    buttonGroup.classList.add(this.CLASS_LIST[theme].button_group);
+    buttonGroup.classList.add(this.CLASS_LIST[this.THEME].button_group);
 
     buttons.forEach((button) => {
-      let className = button.class || this.CLASS_LIST[theme].button;
+      let className = button.class || this.CLASS_LIST[this.THEME].button;
       let buttonElement = document.createElement("button");
       buttonElement.innerText = button.text;
       buttonElement.className = className;
       buttonElement.addEventListener("click", async () => {
-        await button.click(this.bagCreator(containerRef));
+        await button.click(this.bagCreator());
       });
       buttonGroup.appendChild(buttonElement);
     });
 
-    return buttonGroup;
+    this.CONTEXT_PROVIDER_SET("button_groupRef", buttonGroup);
   }
 
-  createMainElements({
-    title,
-    message,
-    type = false, // [0] success, [1] error, [2] warning, [3] info -> enumLoader() -> TYPE_LIST
-    html = false,
-    buttons = [],
-    text_align = "left",
-    theme,
-    opacity = 1,
-  }) {
-    let container = this.createContainer();
-    let content_box = this.createContentBox(theme, opacity);
-    let alert_title = this.createAlertTitle(title, theme);
-    let alert_message = this.createAlertMessage(
-      message,
-      type,
-      html,
-      text_align,
-      theme
-    );
-    let header = this.createHeader(alert_title, container, theme);
-
-    let button_group = this.createButtonGroup(buttons, container, theme);
-
-    return { container, content_box, alert_message, header, button_group };
+  createMainElements() {
+    this.createContainer();
+    this.createContentBox();
+    this.createAlertTitle();
+    this.createAlertMessage();
+    this.createHeader();
+    this.createButtonGroup();
   }
 
-  errorControl(props) {
+  ERROR_CONTROL() {
     this.ERROR_PROCESSOR.forEach((error) => {
       if (error.condition) {
         error.success();
       }
     });
-    this.buttonErrorControl(props.buttons);
+    this.button_ERROR_CONTROL();
   }
-  buttonErrorControl(buttons = false) {
+  button_ERROR_CONTROL() {
+    let buttons = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.buttons);
     if (!Array.isArray(buttons) && buttons) {
       throw new Error(this.ERROR_LIST.buttons_array);
     } else if (buttons.length > 0) {
@@ -237,21 +374,28 @@ class DNDAlert {
     }
   }
 
-  containerClickClose(containerRef, closeBackgroundClick = true) {
+  containerClickClose() {
+    let closeBackgroundClick = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.closeBackgroundClick
+    );
+
     if (closeBackgroundClick) {
-      containerRef.addEventListener("click", (e) => {
+      this.CONTEXT_PROVIDER_GET(
+        this.CONTEXT_QUERY_NAME.containerRef
+      ).addEventListener("click", (e) => {
         if (e.target.classList.contains(this.CLASS_LIST.container)) {
-          this.removeContainer(containerRef);
+          this.removeContainer();
         }
       });
     }
   }
 
-  getBodyElement(portalElement) {
-    if (portalElement) {
-      return portalElement;
-    }
-    return document.body;
+  getBodyElement() {
+    let portalElement = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.portalElement
+    );
+
+    return portalElement;
   }
 
   classListLoader() {
@@ -286,7 +430,9 @@ class DNDAlert {
     });
   }
 
-  errorOptionsLoader(props) {
+  errorOptionsLoader() {
+    let props = this.CONTEXT_PROVIDER_GET_ALL();
+
     this.ERROR_PREFIX = "DNDAlert: ";
     this.ERROR_LIST = {
       title: this.ERROR_PREFIX + "Title is required.",
@@ -306,7 +452,7 @@ class DNDAlert {
         Object.values(this.THEME_ENUM).join(", "),
       overflow: this.ERROR_PREFIX + "Overflow is not valid.",
       onOpen: this.ERROR_PREFIX + "onOpen must be a function.",
-      opacity: this.ERROR_PREFIX + "Opacity must be between 0.1 and 1.",
+      opacity: this.ERROR_PREFIX + "Opacity must be between 0 and 1.",
     };
     this.ERROR_PROCESSOR = [
       {
@@ -351,7 +497,7 @@ class DNDAlert {
       },
       {
         condition: eval(
-          "props.opacity && (props.opacity < 0.1 || props.opacity > 1)"
+          "props.opacity && (props.opacity <= 0 || props.opacity > 1)"
         ),
         success: () => {
           throw new Error(this.ERROR_LIST.opacity);
@@ -360,7 +506,8 @@ class DNDAlert {
     ];
   }
 
-  svgLoader(theme) {
+  svgLoader() {
+    let theme = this.THEME;
     this.SVG_COLOR_LIST = {
       white: {
         success: "#0ca678",
@@ -406,9 +553,9 @@ class DNDAlert {
     };
   }
 
-  removeContainer(containerRef) {
+  removeContainer() {
     this.setBodyOverflow(this.OVERFLOW_ENUM.AUTO);
-    containerRef.remove();
+    this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.containerRef).remove();
   }
   setBodyOverflow(ENUM_VALUE) {
     if (Object.values(this.OVERFLOW_ENUM).includes(ENUM_VALUE)) {
