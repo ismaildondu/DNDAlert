@@ -302,6 +302,8 @@ class DNDAlert extends ALERT_CONTEXT {
   }
 
   bagCreator() {
+    let CONTEXT = this.CONTEXT_PROVIDER_GET_ALL();
+    delete CONTEXT.theme;
     const BAG_ELEMENT = {
       CLOSE_MODAL: () => {
         this.removeContainer();
@@ -309,6 +311,7 @@ class DNDAlert extends ALERT_CONTEXT {
       PROPETIES: {
         CREATED_TIME: this.CREATED_TIME,
         THEME: this.THEME,
+        CONTEXT,
       },
     };
 
