@@ -60,6 +60,10 @@ const Alert = new DNDAlert({
     console.log("Modal Opened");
     console.log(bag);
   },
+  onClose: (bag) => {
+    console.log("Modal Closed");
+    console.log(bag.PROPETIES);
+  },
   opacity: 1,
   autoCloseDuration: 3000,
 });
@@ -85,6 +89,7 @@ const Alert = new DNDAlert({
 * [**text_align**] Css property of message
 * [**theme**] Theme (dark AND white)
 * [**onOpen**] The function is called by the library when the modal is opened.
+* [**onClose**] The function is called by the library when the modal is closed.
 * [**opacity**] Modal css opacity.
 * [**autoCloseDuration**] Takes value (X) in milliseconds and closes modal after X milliseconds.
 
@@ -111,7 +116,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 
 ## BAG_ELEMENT
 
-\*onOpen and click function of the buttons
+\*onOpen,onClose and click function of the buttons
 
 | Property                | ?                            |
 | ----------------------- | ---------------------------- |

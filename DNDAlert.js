@@ -17,6 +17,7 @@ class ALERT_CONTEXT {
       text_align: "text_align",
       theme: "theme",
       onOpen: "onOpen",
+      onClose: "onClose",
       opacity: "opacity",
       autoCloseDuration: "autoCloseDuration",
 
@@ -460,6 +461,7 @@ class DNDAlert extends ALERT_CONTEXT {
         Object.values(this.THEME_ENUM).join(", "),
       overflow: this.ERROR_PREFIX + "Overflow is not valid.",
       onOpen: this.ERROR_PREFIX + "onOpen must be a function.",
+      onClose: this.ERROR_PREFIX + "onClose must be a function.",
       opacity: this.ERROR_PREFIX + "Opacity must be between 0 and 1.",
     };
     this.ERROR_PROCESSOR = [
@@ -501,6 +503,12 @@ class DNDAlert extends ALERT_CONTEXT {
         condition: eval("props.onOpen && typeof props.onOpen !== 'function'"),
         success: () => {
           throw new Error(this.ERROR_LIST.onOpen);
+        },
+      },
+      {
+        condition: eval("props.onClose && typeof props.onClose !== 'function'"),
+        success: () => {
+          throw new Error(this.ERROR_LIST.onClose);
         },
       },
       {
@@ -564,6 +572,8 @@ class DNDAlert extends ALERT_CONTEXT {
   removeContainer() {
     this.setBodyOverflow(this.OVERFLOW_ENUM.AUTO);
     this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.containerRef).remove();
+    let onClose = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.onClose);
+    if (onClose) onClose(this.bagCreator());
   }
   setBodyOverflow(ENUM_VALUE) {
     if (Object.values(this.OVERFLOW_ENUM).includes(ENUM_VALUE)) {
