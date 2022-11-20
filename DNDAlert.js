@@ -46,6 +46,22 @@ class ALERT_CONTEXT {
       headerRef: null,
       button_groupRef: null,
     };
+    this.CONTEXT_PRIVATE_RESPONSE_LIST = [
+      this.CONTEXT_QUERY_NAME.closeBackgroundClick,
+      this.CONTEXT_QUERY_NAME.type,
+      this.CONTEXT_QUERY_NAME.html,
+      this.CONTEXT_QUERY_NAME.buttons,
+      this.CONTEXT_QUERY_NAME.text_align,
+      this.CONTEXT_QUERY_NAME.opacity,
+      this.CONTEXT_QUERY_NAME.portalElement,
+      this.CONTEXT_QUERY_NAME.containerRef,
+      this.CONTEXT_QUERY_NAME.content_boxRef,
+      this.CONTEXT_QUERY_NAME.alert_titleRef,
+      this.CONTEXT_QUERY_NAME.alert_messageRef,
+      this.CONTEXT_QUERY_NAME.headerRef,
+      this.CONTEXT_QUERY_NAME.button_groupRef,
+      this.CONTEXT_QUERY_NAME.autoCloseDuration,
+    ];
   }
 
   CONTEXT_QUERY_NAME_CHECKER(key) {
@@ -58,65 +74,13 @@ class ALERT_CONTEXT {
   }
   CONTEXT_PROVIDER_GET(key) {
     this.CONTEXT_QUERY_NAME_CHECKER(key);
-    switch (key) {
-      case this.CONTEXT_QUERY_NAME.closeBackgroundClick:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.closeBackgroundClick;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.type:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.type;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.html:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.html;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.buttons:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.buttons;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.text_align:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.text_align;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.opacity:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.opacity;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.portalElement:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.portalElement;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.containerRef:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.containerRef;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.content_boxRef:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.content_boxRef;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.alert_titleRef:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.alert_titleRef;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.alert_messageRef:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.alert_messageRef;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.headerRef:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.headerRef;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.button_groupRef:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.button_groupRef;
-        return this._context[key];
-      case this.CONTEXT_QUERY_NAME.autoCloseDuration:
-        if (this._context[key] === undefined)
-          return this.CONTEXT_DEFAULT_VALUES.autoCloseDuration;
-        return this._context[key];
-      default:
-        return this._context[key];
+
+    if (this.CONTEXT_PRIVATE_RESPONSE_LIST.includes(key)) {
+      if (this._context[key] === undefined)
+        return this.CONTEXT_DEFAULT_VALUES[key];
+      return this._context[key];
+    } else {
+      return this._context[key];
     }
   }
   CONTEXT_PROVIDER_REMOVE(key) {
