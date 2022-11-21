@@ -16,7 +16,7 @@ by Ismail Dondu (İsmail Döndü)
 - Theme (dark AND white)
 - ✨[NEW] Draggable
 
-## IMG
+## Examples
 
 ![Adsız tasarım (2)](https://user-images.githubusercontent.com/49169815/203037702-af2143cf-1be0-4efa-85f5-ee015e373fc5.png)
 
