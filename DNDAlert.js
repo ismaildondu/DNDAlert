@@ -21,6 +21,7 @@ class ALERT_CONTEXT {
       onClose: "onClose",
       opacity: "opacity",
       autoCloseDuration: "autoCloseDuration",
+      draggable: "draggable",
 
       containerRef: "containerRef",
       content_boxRef: "content_boxRef",
@@ -38,6 +39,7 @@ class ALERT_CONTEXT {
       text_align: "left",
       opacity: 1,
       portalElement: document.body,
+      draggable: false,
 
       containerRef: null,
       content_boxRef: null,
@@ -61,6 +63,7 @@ class ALERT_CONTEXT {
       this.CONTEXT_QUERY_NAME.headerRef,
       this.CONTEXT_QUERY_NAME.button_groupRef,
       this.CONTEXT_QUERY_NAME.autoCloseDuration,
+      this.CONTEXT_QUERY_NAME.draggable,
     ];
   }
 
@@ -118,6 +121,7 @@ class DNDAlert extends ALERT_CONTEXT {
       this.CONTEXT_QUERY_NAME.button_groupRef
     );
 
+    this.contextBoxDrag();
     this.appendChild(CONTENT_BOX, [HEADER, ALERT_MESSAGE]);
     if (BUTTON_GROUP) {
       this.appendChild(CONTENT_BOX, [BUTTON_GROUP]);
@@ -362,6 +366,70 @@ class DNDAlert extends ALERT_CONTEXT {
           this.removeContainer();
         }
       });
+    }
+  }
+
+  contextBoxDrag() {
+    let contextBox = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.content_boxRef
+    );
+
+    let header = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.headerRef);
+    let draggable = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.draggable
+    );
+
+    const defaultPosition = {
+      x: contextBox.offsetLeft,
+      y: contextBox.offsetTop,
+    };
+
+    if (draggable) {
+      window.addEventListener("resize", () => {
+        let viewPortWidth = window.innerWidth;
+
+        if (viewPortWidth <= 700) {
+          contextBox.position = "relative";
+          contextBox.style.left = defaultPosition.x + "px";
+          contextBox.style.top = defaultPosition.y + "px";
+          return false;
+        }
+      });
+      header.addEventListener("mousedown", (e) => {
+        let viewPortWidth = window.innerWidth;
+        if (viewPortWidth <= 700) return false;
+
+        contextBox.style.position = "absolute";
+        contextBox.style.zIndex = 9999;
+        let shiftX = e.clientX - contextBox.getBoundingClientRect().left;
+        let shiftY = e.clientY - contextBox.getBoundingClientRect().top;
+
+        function moveAt(pageX, pageY) {
+          contextBox.style.left = pageX - shiftX + "px";
+          contextBox.style.top = pageY - shiftY + "px";
+        }
+        moveAt(e.pageX, e.pageY);
+
+        function onMouseMove(e) {
+          moveAt(e.pageX, e.pageY);
+        }
+
+        document.addEventListener("mousemove", onMouseMove);
+
+        contextBox.onmouseup = function () {
+          document.removeEventListener("mousemove", onMouseMove);
+        };
+
+        contextBox.ondragstart = function () {
+          return false;
+        };
+      });
+
+      let title = this.CONTEXT_PROVIDER_GET(
+        this.CONTEXT_QUERY_NAME.alert_titleRef
+      );
+      title.style.cursor = "auto";
+      header.style.cursor = "move";
     }
   }
 

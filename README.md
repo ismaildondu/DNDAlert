@@ -13,6 +13,7 @@ by Ismail Dondu (İsmail Döndü)
 - Responsive
 - Animation
 - Theme (dark AND white)
+- Draggable
 
 ## Simple Usage
 
@@ -66,6 +67,7 @@ const Alert = new DNDAlert({
   },
   opacity: 1,
   autoCloseDuration: 3000,
+  draggable: true,
 });
 ```
 
@@ -92,6 +94,7 @@ const Alert = new DNDAlert({
 * [**onClose**] The function is called by the library when the modal is closed.
 * [**opacity**] Modal css opacity.
 * [**autoCloseDuration**] Takes value (X) in milliseconds and closes modal after X milliseconds.
+* [**draggable**] Modal draggable.
 
 ## Installation
 
@@ -113,6 +116,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 | theme                | white                    |
 | opacity              | 1                        |
 | autoCloseDuration    | false                    |
+| draggable            | false                    |
 
 ## BAG_ELEMENT
 
