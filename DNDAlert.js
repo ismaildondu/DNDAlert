@@ -25,7 +25,6 @@ class ALERT_CONTEXT {
       draggable: "draggable",
       animationStatus: "animationStatus",
       openAnimationStatus: "openAnimationStatus",
-      openAnimationCloseConfilict: "openAnimationCloseConfilict",
 
       containerRef: "containerRef",
       content_boxRef: "content_boxRef",
@@ -115,7 +114,7 @@ class DNDAlert extends ALERT_CONTEXT {
   INIT() {
     this.cssLoader();
     this.createMainElements();
-    this.OPEN_ANIMATION_CLOSE_CONFLICT_TIME = 500;
+
     const CONTENT_BOX = this.CONTEXT_PROVIDER_GET(
       this.CONTEXT_QUERY_NAME.content_boxRef
     );
@@ -202,6 +201,8 @@ class DNDAlert extends ALERT_CONTEXT {
     this.svgLoader();
 
     this.BODY = this.getBodyElement();
+    this.OPEN_ANIMATION_CLOSE_CONFLICT_TIME =
+      this.CLASS_LIST.openAnimation.duration + 100;
   }
 
   STARTER() {
