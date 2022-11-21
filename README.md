@@ -2,12 +2,17 @@
 
 ![dndalert](https://user-images.githubusercontent.com/49169815/203099497-589df1a2-63fb-4c97-aeb2-d4cb80233872.png)
 
-<center>![GitHub](https://img.shields.io/github/license/ismailfp/DNDAlert?style=plastic)
-![GitHub Repo stars](https://img.shields.io/github/stars/ismailfp/dndalert?style=social)</center>
+<p align="center">
+<img width="100" src="https://img.shields.io/github/license/ismailfp/DNDAlert?style=plastic" alt="GitHub">
+<img width="100" src="https://img.shields.io/github/stars/ismailfp/dndalert?style=social" alt="GitHub Repo stars">
 
-### by Ismail Dondu (İsmail Döndü)
+</p>
+<p style="text-size:15px;text-align:center;">
+by Ismail Dondu (İsmail Döndü)
+</p>
+<h1 style="text-align:center;">DNDAlert is a simple JavaScript library alert for web developers.
 
-# DNDAlert is a simple JavaScript library alert for web developers.
+</h1>
 
 ## Features
 
