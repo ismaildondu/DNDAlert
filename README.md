@@ -80,6 +80,7 @@ const Alert = new DNDAlert({
   opacity: 1,
   autoCloseDuration: 3000,
   draggable: true,
+  animationStatus: true,
 });
 ```
 
@@ -107,6 +108,7 @@ const Alert = new DNDAlert({
 * [**opacity**] Modal css opacity.
 * [**autoCloseDuration**] Takes value (X) in milliseconds and closes modal after X milliseconds.
 * [**draggable**] Modal draggable.
+* [**animationStatus**] If true, opening and closing will be accompanied by animation.
 
 ## Installation
 
@@ -136,6 +138,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 | opacity              | 1                        |
 | autoCloseDuration    | false                    |
 | draggable            | false                    |
+| animationStatus      | true                     |
 
 ## BAG_ELEMENT
 
