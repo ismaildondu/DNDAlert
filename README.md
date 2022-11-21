@@ -2,8 +2,8 @@
 
 ![dndalert](https://user-images.githubusercontent.com/49169815/203099497-589df1a2-63fb-4c97-aeb2-d4cb80233872.png)
 
-![GitHub](https://img.shields.io/github/license/ismailfp/DNDAlert?style=plastic)
-![GitHub Repo stars](https://img.shields.io/github/stars/ismailfp/dndalert?style=social)
+<center>![GitHub](https://img.shields.io/github/license/ismailfp/DNDAlert?style=plastic)
+![GitHub Repo stars](https://img.shields.io/github/stars/ismailfp/dndalert?style=social)</center>
 
 ### by Ismail Dondu (İsmail Döndü)
 
