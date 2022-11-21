@@ -1,6 +1,7 @@
 /* 
 DNDAlert is a simple JavaScript library alert for web developers.
 by İsmail Döndü - 2023
+License: MIT
 */
 
 class ALERT_CONTEXT {
