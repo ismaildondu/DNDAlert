@@ -112,6 +112,13 @@ const Alert = new DNDAlert({
 
 ```sh
 cd my-web-project
+npm i dndalertjs
+```
+
+<p>or</p>
+
+```sh
+cd my-web-project
 git clone https://github.com/ismailfp/DNDAlert.js.git
 ```
 
