@@ -10,9 +10,6 @@
 
 <p style="text-align:center;">DNDAlert is a simple JavaScript library alert for web developers.
 </p>
-<p style="text-size:15px;text-align:center;">
-by Ismail Dondu (İsmail Döndü)
-</p>
 
 ## Features
 
