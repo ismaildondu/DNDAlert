@@ -1,0 +1,33 @@
+{
+  "name": "dndalertjs",
+  "version": "1.0.1",
+  "description": "DNDAlert is a simple JavaScript library alert for web developers.",
+  "main": "DNDAlert.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ismailfp/DNDAlert.git"
+  },
+  "keywords": [
+    "javascript",
+    "alert",
+    "ui",
+    "modal",
+    "dialog",
+    "popup",
+    "toast",
+    "alert-message",
+    "dndalert"
+  ],
+  "author": "İsmail Döndü",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ismailfp/DNDAlert/issues"
+  },
+  "homepage": "https://github.com/ismailfp/DNDAlert#readme"
+}
