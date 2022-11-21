@@ -25,6 +25,7 @@ class ALERT_CONTEXT {
       draggable: "draggable",
       animationStatus: "animationStatus",
       openAnimationStatus: "openAnimationStatus",
+      openAnimationCloseConfilict: "openAnimationCloseConfilict",
 
       containerRef: "containerRef",
       content_boxRef: "content_boxRef",
@@ -114,7 +115,7 @@ class DNDAlert extends ALERT_CONTEXT {
   INIT() {
     this.cssLoader();
     this.createMainElements();
-
+    this.OPEN_ANIMATION_CLOSE_CONFLICT_TIME = 500;
     const CONTENT_BOX = this.CONTEXT_PROVIDER_GET(
       this.CONTEXT_QUERY_NAME.content_boxRef
     );
@@ -224,7 +225,12 @@ class DNDAlert extends ALERT_CONTEXT {
       content_box.classList.add(this.CLASS_LIST.openAnimation.class);
       this.CONTEXT_PROVIDER_SET("openAnimationStatus", true);
       content_box.addEventListener("animationend", () => {
-        this.CONTEXT_PROVIDER_SET("openAnimationStatus", false);
+        if (
+          content_box.classList.contains(this.CLASS_LIST.openAnimation.class)
+        ) {
+          content_box.classList.remove(this.CLASS_LIST.openAnimation.class);
+          this.CONTEXT_PROVIDER_SET("openAnimationStatus", false);
+        }
       });
     }
     this.CONTEXT_PROVIDER_SET("content_boxRef", content_box);
@@ -378,8 +384,17 @@ class DNDAlert extends ALERT_CONTEXT {
       this.CONTEXT_PROVIDER_GET(
         this.CONTEXT_QUERY_NAME.containerRef
       ).addEventListener("click", (e) => {
+        let openAnimationStatus = this.CONTEXT_PROVIDER_GET(
+          this.CONTEXT_QUERY_NAME.openAnimationStatus
+        );
         if (e.target.classList.contains(this.CLASS_LIST.container)) {
-          this.removeContainer();
+          if (openAnimationStatus) {
+            setTimeout(() => {
+              this.removeContainer();
+            }, this.OPEN_ANIMATION_CLOSE_CONFLICT_TIME);
+          } else {
+            this.removeContainer();
+          }
         }
       });
     }
@@ -640,18 +655,17 @@ class DNDAlert extends ALERT_CONTEXT {
       this.CONTEXT_QUERY_NAME.animationStatus
     );
     if (animation) {
-      const OPEN_ANIMATION = this.CONTEXT_PROVIDER_GET(
-        this.CONTEXT_QUERY_NAME.openAnimationStatus
-      );
-      if (OPEN_ANIMATION) return; // <-- Close and open animation avoid conflict
-
       let content_box = this.CONTEXT_PROVIDER_GET(
         this.CONTEXT_QUERY_NAME.content_boxRef
       );
-      content_box.classList.remove(this.CLASS_LIST.openAnimation.class);
+
       content_box.classList.add(this.CLASS_LIST.closeAnimation.class);
       content_box.addEventListener("animationend", () => {
-        this.elementRuiner();
+        if (
+          content_box.classList.contains(this.CLASS_LIST.closeAnimation.class)
+        ) {
+          this.elementRuiner();
+        }
       });
     } else {
       this.elementRuiner();
