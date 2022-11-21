@@ -107,10 +107,6 @@ class DNDAlert extends ALERT_CONTEXT {
     this.STARTER();
   }
 
-  importCSS() {
-    // import css to head
-  }
-
   INIT() {
     this.cssLoader();
     this.createMainElements();
