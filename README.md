@@ -13,14 +13,11 @@ by Ismail Dondu (İsmail Döndü)
 - Responsive
 - Animation
 - Theme (dark AND white)
-  <<<<<<< HEAD
-- # Draggable
+- Draggable
 
 ## IMG
 
 ![Adsız tasarım (2)](https://user-images.githubusercontent.com/49169815/203037702-af2143cf-1be0-4efa-85f5-ee015e373fc5.png)
-
-> > > > > > > 733432b09e67285855847988954c25be02d5fc26
 
 ## Simple Usage
 
