@@ -7,12 +7,12 @@
 <img width="100" src="https://img.shields.io/github/stars/ismailfp/dndalert?style=social" alt="GitHub Repo stars">
 
 </p>
+
+<p style="text-align:center;">DNDAlert is a simple JavaScript library alert for web developers.
+</p>
 <p style="text-size:15px;text-align:center;">
 by Ismail Dondu (İsmail Döndü)
 </p>
-<h1 style="text-align:center;">DNDAlert is a simple JavaScript library alert for web developers.
-
-</h1>
 
 ## Features
 
