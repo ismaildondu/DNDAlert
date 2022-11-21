@@ -13,6 +13,10 @@ by Ismail Dondu (İsmail Döndü)
 - Responsive
 - Animation
 - Theme (dark AND white)
+## IMG
+
+![Adsız tasarım (2)](https://user-images.githubusercontent.com/49169815/203037702-af2143cf-1be0-4efa-85f5-ee015e373fc5.png)
+
 
 ## Simple Usage
 
@@ -126,8 +130,4 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 | PROPETIES->THEME        | THEME                        |
 | PROPETIES->CONTEXT      | Everything in Context        |
 
-## IMG
 
-![Screenshot_7](https://user-images.githubusercontent.com/49169815/202866531-6f45fe89-8f64-4907-a807-bcfc85800c3e.png)
-![Screenshot_4](https://user-images.githubusercontent.com/49169815/202852747-a4c13be6-aa2c-46e7-949c-cb8be621b355.png)
-![Screenshot_6](https://user-images.githubusercontent.com/49169815/202859207-81e1ab79-4109-4af0-87e8-56f2749ab34b.png)
