@@ -1,4 +1,5 @@
 # DNDAlert.js
+![dndalert](https://user-images.githubusercontent.com/49169815/203099497-589df1a2-63fb-4c97-aeb2-d4cb80233872.png)
 
 DNDAlert is a simple JavaScript library alert for web developers.
 by Ismail Dondu (İsmail Döndü)
@@ -13,9 +14,9 @@ by Ismail Dondu (İsmail Döndü)
 - Responsive
 - Animation
 - Theme (dark AND white)
-- Draggable
+- ✨[NEW] Draggable
 
-## IMG
+## Examples
 
 ![Adsız tasarım (2)](https://user-images.githubusercontent.com/49169815/203037702-af2143cf-1be0-4efa-85f5-ee015e373fc5.png)
 
