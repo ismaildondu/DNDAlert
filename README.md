@@ -1,4 +1,5 @@
 # DNDAlert.js
+![dndalert](https://user-images.githubusercontent.com/49169815/203099497-589df1a2-63fb-4c97-aeb2-d4cb80233872.png)
 
 DNDAlert is a simple JavaScript library alert for web developers.
 by Ismail Dondu (İsmail Döndü)
