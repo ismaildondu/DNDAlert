@@ -46,10 +46,8 @@
 }
 
 .dnd-alert-close-button {
-    width: 20px;
-    height: 20px;
+    border: none;
     background-color: #f5f5f5;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -143,10 +141,8 @@
 }
 
 .dnd-alert-close-button-dark {
-    width: 20px;
-    height: 20px;
+    border: none;
     background-color: #222;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
