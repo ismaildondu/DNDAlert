@@ -35,11 +35,11 @@ class ALERT_CONTEXT {
       type: false,
       html: false,
       autoCloseDuration: false,
+      draggable: false,
       buttons: [],
       text_align: "left",
       opacity: 1,
       portalElement: document.body,
-      draggable: false,
 
       containerRef: null,
       content_boxRef: null,
