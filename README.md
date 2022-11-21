@@ -13,7 +13,7 @@ by Ismail Dondu (İsmail Döndü)
 - Responsive
 - Animation
 - Theme (dark AND white)
-- Draggable
+- ✨[NEW] Draggable
 
 ## IMG
 
