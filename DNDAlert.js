@@ -173,6 +173,13 @@ class DNDAlert extends ALERT_CONTEXT {
       DARK: "dark",
     };
     this.TYPE_LIST = ["success", "error", "warning", "info"];
+    this.BUTTON_TYPE_LIST = [
+      "primary",
+      "secondary",
+      "success",
+      "danger",
+      "warning",
+    ];
   }
 
   themeLoader() {
@@ -325,10 +332,16 @@ class DNDAlert extends ALERT_CONTEXT {
     buttonGroup.classList.add(this.CLASS_LIST[this.THEME].button_group);
 
     buttons.forEach((button) => {
-      let className = button.class || this.CLASS_LIST[this.THEME].button;
+      let tempClass;
+      if (!button.class && button.type) {
+        tempClass = this.CLASS_LIST.buttons[button.type];
+      } else {
+        tempClass = button.class || this.CLASS_LIST[this.THEME].button;
+      }
+
       let buttonElement = document.createElement("button");
       buttonElement.innerText = button.text;
-      buttonElement.className = className;
+      buttonElement.className = tempClass;
       buttonElement.addEventListener("click", async () => {
         await button.click(this.bagCreator());
       });
@@ -369,6 +382,9 @@ class DNDAlert extends ALERT_CONTEXT {
         }
         if (typeof button.click !== "function") {
           throw new Error(this.ERROR_LIST.button_click_type);
+        }
+        if (button.type && !this.BUTTON_TYPE_LIST.includes(button.type)) {
+          throw new Error(this.ERROR_LIST.button_type);
         }
       });
     } else {
@@ -504,6 +520,13 @@ class DNDAlert extends ALERT_CONTEXT {
         button_group: "dnd-alert-button-group-dark",
         button: "dnd-alert-default-button-dark",
       },
+      buttons: {
+        primary: "dnd-alert-button-primary",
+        secondary: "dnd-alert-button-secondary",
+        success: "dnd-alert-button-success",
+        danger: "dnd-alert-button-danger",
+        warning: "dnd-alert-button-warning",
+      },
     };
   }
 
@@ -529,6 +552,10 @@ class DNDAlert extends ALERT_CONTEXT {
       button_text: this.ERROR_PREFIX + "Button text is required.",
       button_click: this.ERROR_PREFIX + "Button click is required.",
       button_click_type: this.ERROR_PREFIX + "Button click must be a function.",
+      button_type:
+        this.ERROR_PREFIX +
+        "Button type is not valid. Type must be one of these: " +
+        this.BUTTON_TYPE_LIST.join(", "),
       theme:
         this.ERROR_PREFIX +
         "Theme is not valid. Theme must be one of these: " +
@@ -699,7 +726,7 @@ class DNDAlert extends ALERT_CONTEXT {
     }
   }
   cssLoader() {
-    const CSS = `@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,500;1,700;1,900&display=swap);.dnd-alert-container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;background-color:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:top;padding-top:100px;font-family:Roboto,sans-serif;overflow:auto}.dnd-alert-content-box,.dnd-alert-content-box-dark{width:400px;height:min-content;box-shadow:0 0 10px rgba(0,0,0,.5)}.dnd-alert-content-box{background-color:#fff;border-radius:5px}.dnd-alert-title{font-size:16px;color:#333;font-weight:700}.dnd-alert-header,.dnd-alert-message{font-size:14px;color:#333;display:flex}.dnd-alert-header{padding:10px;justify-content:space-between;align-items:center;background-color:#f5f5f5;border-bottom:1px solid #ccc}.dnd-alert-close-button{border:none;background-color:#f5f5f5;display:flex;justify-content:center;align-items:center;cursor:pointer}.dnd-alert-message{padding:0 10px;flex-direction:column;justify-content:center;align-items:center}.dnd-alert-svg,.dnd-alert-svg-dark{display:flex;justify-content:center;align-items:center;animation:.5s ease-in-out svgAnimation;margin-bottom:20px}.dnd-alert-svg svg,.dnd-alert-svg-dark svg{width:70px;height:70px;animation:.5s ease-in-out svgLoadingAnimation}.dnd-alert-button-group,.dnd-alert-button-group-dark{margin-top:20px;display:flex;justify-content:space-between;align-items:center;padding:10px;border-top:1px solid #ccc;gap:10px}.dnd-alert-button-group-dark>button,.dnd-alert-button-group>button{width:100%}.dnd-alert-default-button{background-color:#f5f5f5;border:1px solid #ccc;color:#333;padding:10px;border-radius:px;font-size:16px;font-weight:400;cursor:pointer;transition:background-color .3s}.dnd-alert-default-button:hover{background-color:#e7e7e7}.dnd-alert-content-box-dark{background-color:#333;border-radius:5px}.dnd-alert-title-dark{font-size:16px;color:#fff;font-weight:700}.dnd-alert-header-dark{padding:10px;font-size:14px;color:#fff;display:flex;justify-content:space-between;align-items:center;background-color:#222;border-bottom:1px solid #ccc}.dnd-alert-close-button-dark{border:none;background-color:#222;display:flex;justify-content:center;align-items:center;cursor:pointer}.dnd-alert-message-dark{font-size:14px;color:#fff;display:flex;padding:0 10px;flex-direction:column;justify-content:center;align-items:center}.dnd-alert-default-button-dark{background-color:#222;border:1px solid #ccc;color:#fff;padding:10px;border-radius:px;font-size:16px;font-weight:400;cursor:pointer;transition:background-color .3s}.dnd-alert-default-button-dark:hover{background-color:#1f1f1f}.dnd-alert-close{animation:.5s ease-in-out modalCloseAnimation}.dnd-alert-open{animation:.5s ease-in-out modalOpenAnimation}@keyframes modalCloseAnimation{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(100px)}}@keyframes modalOpenAnimation{0%{opacity:0;transform:translateY(100px)}100%{opacity:1;transform:translateY(0)}}@keyframes svgAnimation{0%{opacity:0;transform:scale(.5)}100%{opacity:1;transform:scale(1)}}@keyframes svgLoadingAnimation{0%{stroke-dashoffset:0;transform:rotate(0)}100%{stroke-dashoffset:1000;transform:rotate(360deg)}}@media screen and (max-width:700px){.dnd-alert-container{padding-top:0}.dnd-alert-content-box,.dnd-alert-content-box-dark{width:100%;height:100%;border-radius:0;box-shadow:none}.dnd-alert-header,.dnd-alert-header-dark{border-bottom:none}.dnd-alert-button-group,.dnd-alert-button-group-dark{border-top:none;display:flex;flex-direction:column}}`;
+    const CSS = `@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,500;1,700;1,900&display=swap);.dnd-alert-container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;background-color:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:top;padding-top:100px;font-family:Roboto,sans-serif;overflow:auto}.dnd-alert-content-box,.dnd-alert-content-box-dark{width:400px;height:min-content;box-shadow:0 0 10px rgba(0,0,0,.5)}.dnd-alert-content-box{background-color:#fff;border-radius:5px}.dnd-alert-title{font-size:16px;color:#333;font-weight:700}.dnd-alert-header,.dnd-alert-message{font-size:14px;color:#333;display:flex}.dnd-alert-header{padding:10px;justify-content:space-between;align-items:center;background-color:#f5f5f5;border-bottom:1px solid #ccc}.dnd-alert-close-button{border:none;background-color:#f5f5f5;display:flex;justify-content:center;align-items:center;cursor:pointer}.dnd-alert-message{padding:0 10px;flex-direction:column;justify-content:center;align-items:center}.dnd-alert-svg,.dnd-alert-svg-dark{display:flex;justify-content:center;align-items:center;animation:.5s ease-in-out svgAnimation;margin-bottom:20px}.dnd-alert-svg svg,.dnd-alert-svg-dark svg{width:70px;height:70px;animation:.5s ease-in-out svgLoadingAnimation}.dnd-alert-button-group,.dnd-alert-button-group-dark{margin-top:20px;display:flex;justify-content:space-between;align-items:center;padding:10px;border-top:1px solid #ccc;gap:10px}.dnd-alert-button-group-dark>button,.dnd-alert-button-group>button{width:100%}.dnd-alert-default-button{background-color:#f5f5f5;border:1px solid #ccc;color:#333;padding:10px;border-radius:px;font-size:16px;font-weight:400;cursor:pointer;transition:background-color .3s}.dnd-alert-default-button:hover{background-color:#e7e7e7}.dnd-alert-content-box-dark{background-color:#333;border-radius:5px}.dnd-alert-title-dark{font-size:16px;color:#fff;font-weight:700}.dnd-alert-header-dark{padding:10px;font-size:14px;color:#fff;display:flex;justify-content:space-between;align-items:center;background-color:#222;border-bottom:1px solid #ccc}.dnd-alert-close-button-dark{border:none;background-color:#222;display:flex;justify-content:center;align-items:center;cursor:pointer}.dnd-alert-message-dark{font-size:14px;color:#fff;display:flex;padding:0 10px;flex-direction:column;justify-content:center;align-items:center}.dnd-alert-button-danger,.dnd-alert-button-primary,.dnd-alert-button-secondary,.dnd-alert-button-success,.dnd-alert-button-warning,.dnd-alert-default-button-dark{color:#fff;padding:10px;font-size:16px;font-weight:400;cursor:pointer;transition:background-color .3s}.dnd-alert-default-button-dark{background-color:#222;border:1px solid #ccc;border-radius:px}.dnd-alert-default-button-dark:hover{background-color:#1f1f1f}.dnd-alert-close{animation:.5s ease-in-out modalCloseAnimation}.dnd-alert-open{animation:.5s ease-in-out modalOpenAnimation}.dnd-alert-button-primary{background-color:#007bff;border:1px solid #007bff;border-radius:5px}.dnd-alert-button-primary:hover{background-color:#0069d9}.dnd-alert-button-secondary{background-color:#6c757d;border:1px solid #6c757d;border-radius:5px}.dnd-alert-button-secondary:hover{background-color:#5a6268}.dnd-alert-button-success{background-color:#28a745;border:1px solid #28a745;border-radius:5px}.dnd-alert-button-success:hover{background-color:#218838}.dnd-alert-button-danger{background-color:#dc3545;border:1px solid #dc3545;border-radius:5px}.dnd-alert-button-danger:hover{background-color:#c82333}.dnd-alert-button-warning{background-color:#ffc107;border:1px solid #ffc107;border-radius:5px}.dnd-alert-button-warning:hover{background-color:#e0a800}@keyframes modalCloseAnimation{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(100px)}}@keyframes modalOpenAnimation{0%{opacity:0;transform:translateY(100px)}100%{opacity:1;transform:translateY(0)}}@keyframes svgAnimation{0%{opacity:0;transform:scale(.5)}100%{opacity:1;transform:scale(1)}}@keyframes svgLoadingAnimation{0%{stroke-dashoffset:0;transform:rotate(0)}100%{stroke-dashoffset:1000;transform:rotate(360deg)}}@media screen and (max-width:700px){.dnd-alert-container{padding-top:0}.dnd-alert-content-box,.dnd-alert-content-box-dark{width:100%;height:100%;border-radius:0;box-shadow:none}.dnd-alert-header,.dnd-alert-header-dark{border-bottom:none}.dnd-alert-button-group,.dnd-alert-button-group-dark{border-top:none;display:flex;flex-direction:column}}`;
     const TEMP_STYLE_NODE = document.createElement("style");
     TEMP_STYLE_NODE.innerHTML = CSS;
     this.CONTEXT_PROVIDER_SET("TEMP_STYLE_NODE", TEMP_STYLE_NODE);
