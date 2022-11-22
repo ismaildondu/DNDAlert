@@ -92,7 +92,12 @@ const Alert = new DNDAlert({
   - [**text**] Text inside the button
   - [**class**] Sets the class of the button. \* If not defined, it comes with the library's default button style (==dnd-alert-default-button==)
   - [**type**] Default button styles available in the library [primary,secondary,success,danger,warning]
+<<<<<<< HEAD
     - ![buttonList](https://user-images.githubusercontent.com/49169815/203387178-40f54bf8-0222-4aa6-938a-716454d79154.png)
+=======
+   - ![buttonList](https://user-images.githubusercontent.com/49169815/203387178-40f54bf8-0222-4aa6-938a-716454d79154.png)
+
+>>>>>>> 14850d048559ea423a77e3287cc884bfce35dc29
   - [**click**] Function to run after clicking the button.
     - The library sends a BAG_ELEMENT object to this function, which contains the CLOSE_MODAL function needed to close the modal
       ```
