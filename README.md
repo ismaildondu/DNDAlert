@@ -149,7 +149,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 
 ## BAG_ELEMENT
 
-\*onOpen,onClose and click function of the buttons
+- onOpen,onClose and click function of the buttons
 
 | Property                | ?                            |
 | ----------------------- | ---------------------------- |
