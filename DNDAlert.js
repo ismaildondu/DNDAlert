@@ -25,6 +25,7 @@ class ALERT_CONTEXT {
       draggable: "draggable",
       animationStatus: "animationStatus",
       openAnimationStatus: "openAnimationStatus",
+      closeIcon: "closeIcon",
 
       containerRef: "containerRef",
       content_boxRef: "content_boxRef",
@@ -38,6 +39,7 @@ class ALERT_CONTEXT {
     this.CONTEXT_DEFAULT_VALUES = {
       closeBackgroundClick: true,
       animationStatus: true,
+      closeIcon: true,
       type: false,
       html: false,
       autoCloseDuration: false,
@@ -70,6 +72,7 @@ class ALERT_CONTEXT {
       this.CONTEXT_QUERY_NAME.button_groupRef,
       this.CONTEXT_QUERY_NAME.autoCloseDuration,
       this.CONTEXT_QUERY_NAME.draggable,
+      this.CONTEXT_QUERY_NAME.closeIcon,
       this.CONTEXT_QUERY_NAME.animationStatus,
     ];
   }
@@ -298,11 +301,15 @@ class DNDAlert extends ALERT_CONTEXT {
 
   createHeader() {
     let header = document.createElement("div");
+    let closeIcon = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.closeIcon
+    );
     header.classList.add(this.CLASS_LIST[this.THEME].header);
     header.appendChild(
       this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.alert_titleRef)
     );
-    header.appendChild(this.createTopRightCloseButton());
+
+    if (closeIcon) header.appendChild(this.createTopRightCloseButton());
 
     this.CONTEXT_PROVIDER_SET("headerRef", header);
   }

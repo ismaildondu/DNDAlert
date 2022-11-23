@@ -82,6 +82,7 @@ const Alert = new DNDAlert({
   autoCloseDuration: 3000,
   draggable: true,
   animationStatus: true,
+  closeIcon: false,
 });
 ```
 
@@ -114,6 +115,7 @@ const Alert = new DNDAlert({
 * [**autoCloseDuration**] Takes value (X) in milliseconds and closes modal after X milliseconds.
 * [**draggable**] Modal draggable.
 * [**animationStatus**] If true, opening and closing will be accompanied by animation.
+* [**closeIcon**] Sets the status of the close button on the top right (invisible if false)
 
 ## Installation
 
