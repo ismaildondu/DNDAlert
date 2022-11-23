@@ -104,18 +104,22 @@ const Alert = new DNDAlert({
          },
       ```
 
-* [**type**] success,error,warning and info | If it is not entered, the type will not be displayed, only the message will be show.
 * [**closeBackgroundClick**] If true, clicking (not Modal) the background closes the Modal
-* [**portalElement**] To call a modal on an element other than body
-* [**text_align**] Css property of message
-* [**theme**] Theme (dark AND white)
+* [**autoCloseDuration**] Takes value (X) in milliseconds and closes modal after X milliseconds.
 * [**onOpen**] The function is called by the library when the modal is opened.
 * [**onClose**] The function is called by the library when the modal is closed.
-* [**opacity**] Modal css opacity.
-* [**autoCloseDuration**] Takes value (X) in milliseconds and closes modal after X milliseconds.
-* [**draggable**] Modal draggable.
-* [**animationStatus**] If true, opening and closing will be accompanied by animation.
+
 * [**closeIcon**] Sets the status of the close button on the top right (invisible if false)
+
+* [**portalElement**] To call a modal on an element other than body
+
+* [**text_align**] Css property of message
+* [**theme**] Theme (dark AND white)
+* [**type**] success,error,warning and info | If it is not entered, the type will not be displayed, only the message will be show.
+
+* [**opacity**] Modal css opacity.
+* [**animationStatus**] If true, opening and closing will be accompanied by animation.
+* [**draggable**] Modal draggable.
 
 ## Installation
 
