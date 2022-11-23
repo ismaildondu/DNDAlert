@@ -150,7 +150,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 | autoCloseDuration    | false                    |
 | draggable            | false                    |
 | animationStatus      | true                     |
-| closeIcon            | false                    |
+| closeIcon            | true                     |
 
 ## BAG_ELEMENT
 
