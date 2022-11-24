@@ -12,7 +12,6 @@
 </p>
 
 ## Features
-
 - SVG Types ( success 🟢 , error 🔴 , warning 🟠, info 🔵 )
 - Unlimited button support
 - HTML message support
