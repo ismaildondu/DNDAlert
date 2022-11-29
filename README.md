@@ -20,7 +20,7 @@
 - Responsive
 - Animation
 - Theme (dark AND white)
-- ✨[NEW] Draggable
+- Draggable
 
 ## Examples
 
