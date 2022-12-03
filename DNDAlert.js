@@ -249,17 +249,21 @@ class DNDAlert extends ALERT_CONTEXT {
 
   createContainer() {
     let container = document.createElement("div");
-    container.classList.add(this.CLASS_LIST.container);
+    this.classAdder(container, [this.CLASS_LIST.container]);
     this.CONTEXT_PROVIDER_SET(this.CONTEXT_QUERY_NAME.containerRef, container);
   }
   createContentBox() {
     let opacity = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.opacity);
     let content_box = document.createElement("div");
-    content_box.classList.add(this.CLASS_LIST.superClass.content);
-    content_box.classList.add(this.CLASS_LIST[this.THEME].content);
+
+    this.classAdder(content_box, [
+      this.CLASS_LIST.superClass.content,
+      this.CLASS_LIST[this.THEME].content,
+    ]);
+
     content_box.style.opacity = opacity;
     if (this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.animationStatus)) {
-      content_box.classList.add(this.CLASS_LIST.openAnimation.class);
+      this.classAdder(content_box, [this.CLASS_LIST.openAnimation.class]);
       this.CONTEXT_PROVIDER_SET(
         this.CONTEXT_QUERY_NAME.openAnimationStatus,
         true
@@ -284,8 +288,10 @@ class DNDAlert extends ALERT_CONTEXT {
   createAlertTitle() {
     let title = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.title);
     let alert_title = document.createElement("h1");
-    alert_title.classList.add(this.CLASS_LIST.superClass.title);
-    alert_title.classList.add(this.CLASS_LIST[this.THEME].title);
+    this.classAdder(alert_title, [
+      this.CLASS_LIST.superClass.title,
+      this.CLASS_LIST[this.THEME].title,
+    ]);
     alert_title.innerText = title;
     this.CONTEXT_PROVIDER_SET(
       this.CONTEXT_QUERY_NAME.alert_titleRef,
@@ -297,7 +303,7 @@ class DNDAlert extends ALERT_CONTEXT {
     let type = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.type);
     if (!type) return;
     let svgDiv = document.createElement("div");
-    svgDiv.classList.add(this.CLASS_LIST.superClass.svg);
+    this.classAdder(svgDiv, [this.CLASS_LIST.superClass.svg]);
     svgDiv.innerHTML = this.SVG_LIST[type];
     return svgDiv;
   }
@@ -310,8 +316,10 @@ class DNDAlert extends ALERT_CONTEXT {
       this.CONTEXT_QUERY_NAME.textAlign
     );
     let alert_message = document.createElement("p");
-    alert_message.classList.add(this.CLASS_LIST.superClass.message);
-    alert_message.classList.add(this.CLASS_LIST[this.THEME].message);
+    this.classAdder(alert_message, [
+      this.CLASS_LIST.superClass.message,
+      this.CLASS_LIST[this.THEME].message,
+    ]);
 
     if (html) {
       alert_message.innerHTML = message;
@@ -331,8 +339,10 @@ class DNDAlert extends ALERT_CONTEXT {
 
   createTopRightCloseButton() {
     let close_button = document.createElement("button");
-    close_button.classList.add(this.CLASS_LIST.superClass.close_button);
-    close_button.classList.add(this.CLASS_LIST[this.THEME].close_button);
+    this.classAdder(close_button, [
+      this.CLASS_LIST.superClass.closeButton,
+      this.CLASS_LIST[this.THEME].closeButton,
+    ]);
     close_button.innerHTML = this.SVG_LIST.close;
     close_button.addEventListener("click", () => {
       this.removeContainer();
@@ -345,8 +355,10 @@ class DNDAlert extends ALERT_CONTEXT {
     let closeIcon = this.CONTEXT_PROVIDER_GET(
       this.CONTEXT_QUERY_NAME.closeIcon
     );
-    header.classList.add(this.CLASS_LIST.superClass.header);
-    header.classList.add(this.CLASS_LIST[this.THEME].header);
+    this.classAdder(header, [
+      this.CLASS_LIST.superClass.header,
+      this.CLASS_LIST[this.THEME].header,
+    ]);
     header.appendChild(
       this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.alert_titleRef)
     );
@@ -378,7 +390,7 @@ class DNDAlert extends ALERT_CONTEXT {
     if (buttons.length === 0) return false;
 
     let buttonGroup = document.createElement("div");
-    buttonGroup.classList.add(this.CLASS_LIST.superClass.button_group);
+    this.classAdder(buttonGroup, [this.CLASS_LIST.superClass.button_group]);
 
     buttons.forEach((button) => {
       let tempClass;
@@ -743,7 +755,8 @@ class DNDAlert extends ALERT_CONTEXT {
         this.CONTEXT_QUERY_NAME.content_boxRef
       );
 
-      content_box.classList.add(this.CLASS_LIST.closeAnimation.class);
+      this.classAdder(content_box, [this.CLASS_LIST.closeAnimation.class]);
+
       content_box.addEventListener("animationend", () => {
         if (
           content_box.classList.contains(this.CLASS_LIST.closeAnimation.class)
@@ -794,5 +807,11 @@ class DNDAlert extends ALERT_CONTEXT {
       TEMP_STYLE_NODE
     );
     document.head.appendChild(TEMP_STYLE_NODE);
+  }
+
+  classAdder(element, [...classes]) {
+    classes.forEach((className) => {
+      element.classList.add(className);
+    });
   }
 }
