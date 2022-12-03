@@ -102,7 +102,9 @@ class ALERT_CONTEXT {
   }
 
   CONTEXT_QUERY_NAME_CHECKER(key) {
-    if (this.CONTEXT_QUERY_NAME[key] === undefined) return false;
+    if (this.CONTEXT_QUERY_NAME[key] === undefined) {
+      throw new Error(`DNDAlert: ${key} is not a valid property name!`); // Manual error because error manager is a main class (DNDAlert)
+    }
   }
 
   CONTEXT_PROVIDER_SET(key, value) {
