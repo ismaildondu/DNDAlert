@@ -12,6 +12,7 @@
 </p>
 
 ## Features
+
 - SVG Types ( success 🟢 , error 🔴 , warning 🟠, info 🔵 )
 - Unlimited button support
 - HTML message support
@@ -68,7 +69,7 @@ const Alert = new DNDAlert({
   closeBackgroundClick: true,
   portalElement: document.querySelector("#modal"),
   portalOverflowHidden: true,
-  text_align: "center",
+  textAlign: "center",
   theme: "dark",
   onOpen: (bag) => {
     console.log("Modal Opened");
@@ -114,7 +115,7 @@ const Alert = new DNDAlert({
 * [**portalElement**] To call a modal on an element other than body
 * [**portalOverflowHidden**] Portal overflow hidden
 
-* [**text_align**] Css property of message
+* [**textAlign**] Css property of message
 * [**theme**] Theme (dark AND white)
 * [**type**] success,error,warning and info | If it is not entered, the type will not be displayed, only the message will be show.
 
@@ -140,7 +141,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 
 | Property             | Value                    |
 | -------------------- | ------------------------ |
-| text_align           | left                     |
+| textAlign            | left                     |
 | portalElement        | document.body            |
 | portalOverflowHidden | true                     |
 | html                 | false                    |

@@ -17,7 +17,7 @@ class ALERT_CONTEXT {
       closeBackgroundClick: "closeBackgroundClick",
       portalElement: "portalElement",
       portalOverflowHidden: "portalOverflowHidden",
-      text_align: "text_align",
+      textAlign: "textAlign",
       theme: "theme",
       onOpen: "onOpen",
       onClose: "onClose",
@@ -47,7 +47,7 @@ class ALERT_CONTEXT {
       autoCloseDuration: false,
       draggable: false,
       buttons: [],
-      text_align: "left",
+      textAlign: "left",
       opacity: 1,
       portalElement: document.body,
 
@@ -63,7 +63,7 @@ class ALERT_CONTEXT {
       this.CONTEXT_QUERY_NAME.type,
       this.CONTEXT_QUERY_NAME.html,
       this.CONTEXT_QUERY_NAME.buttons,
-      this.CONTEXT_QUERY_NAME.text_align,
+      this.CONTEXT_QUERY_NAME.textAlign,
       this.CONTEXT_QUERY_NAME.opacity,
       this.CONTEXT_QUERY_NAME.portalElement,
       this.CONTEXT_QUERY_NAME.portalOverflowHidden,
@@ -282,8 +282,8 @@ class DNDAlert extends ALERT_CONTEXT {
     let message = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.message);
     let type = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.type);
     let html = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.html);
-    let text_align = this.CONTEXT_PROVIDER_GET(
-      this.CONTEXT_QUERY_NAME.text_align
+    let textAlign = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.textAlign
     );
     let alert_message = document.createElement("p");
     alert_message.classList.add(this.CLASS_LIST[this.THEME].message);
@@ -294,7 +294,7 @@ class DNDAlert extends ALERT_CONTEXT {
       alert_message.innerText = message;
     }
 
-    alert_message.style.textAlign = text_align;
+    alert_message.style.textAlign = textAlign;
 
     if (type) alert_message.prepend(this.createSvgElement());
 
