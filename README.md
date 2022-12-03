@@ -68,6 +68,7 @@ const Alert = new DNDAlert({
   ],
   closeBackgroundClick: true,
   portalElement: document.querySelector("#modal"),
+  portalOverflowHidden: true,
   text_align: "center",
   theme: "dark",
   onOpen: (bag) => {
@@ -112,6 +113,7 @@ const Alert = new DNDAlert({
 * [**closeIcon**] Sets the status of the close button on the top right (invisible if false)
 
 * [**portalElement**] To call a modal on an element other than body
+* [**portalOverflowHidden**] Portal overflow hidden
 
 * [**text_align**] Css property of message
 * [**theme**] Theme (dark AND white)
@@ -141,6 +143,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 | -------------------- | ------------------------ |
 | text_align           | left                     |
 | portalElement        | document.body            |
+| portalOverflowHidden | true                     |
 | html                 | false                    |
 | closeBackgroundClick | true                     |
 | type                 | false                    |

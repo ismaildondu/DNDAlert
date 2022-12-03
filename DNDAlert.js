@@ -16,6 +16,7 @@ class ALERT_CONTEXT {
       buttons: "buttons",
       closeBackgroundClick: "closeBackgroundClick",
       portalElement: "portalElement",
+      portalOverflowHidden: "portalOverflowHidden",
       text_align: "text_align",
       theme: "theme",
       onOpen: "onOpen",
@@ -40,6 +41,7 @@ class ALERT_CONTEXT {
       closeBackgroundClick: true,
       animationStatus: true,
       closeIcon: true,
+      portalOverflowHidden: true,
       type: false,
       html: false,
       autoCloseDuration: false,
@@ -64,6 +66,7 @@ class ALERT_CONTEXT {
       this.CONTEXT_QUERY_NAME.text_align,
       this.CONTEXT_QUERY_NAME.opacity,
       this.CONTEXT_QUERY_NAME.portalElement,
+      this.CONTEXT_QUERY_NAME.portalOverflowHidden,
       this.CONTEXT_QUERY_NAME.containerRef,
       this.CONTEXT_QUERY_NAME.content_boxRef,
       this.CONTEXT_QUERY_NAME.alert_titleRef,
@@ -721,7 +724,11 @@ class DNDAlert extends ALERT_CONTEXT {
   }
   setBodyOverflow(ENUM_VALUE) {
     if (Object.values(this.OVERFLOW_ENUM).includes(ENUM_VALUE)) {
-      if (ENUM_VALUE === this.OVERFLOW_ENUM.HIDDEN) {
+      let portalOverflowHidden = this.CONTEXT_PROVIDER_GET(
+        this.CONTEXT_QUERY_NAME.portalOverflowHidden
+      );
+
+      if (ENUM_VALUE === this.OVERFLOW_ENUM.HIDDEN && portalOverflowHidden) {
         this.CONTEXT_DEFAULT_VALUES.portalElement.style.overflow = ENUM_VALUE;
       } else {
         this.CONTEXT_DEFAULT_VALUES.portalElement.style.removeProperty(
