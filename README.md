@@ -93,8 +93,8 @@ const Alert = new DNDAlert({
 
   - It is an array. Keeps the buttons inside.
   - [**text**] Text inside the button
-  - [**class**] Sets the class of the button. \* If not defined, it comes with the library's default button style (==dnd-alert-default-button==)
-  - [**type**] Default button styles available in the library [primary,secondary,success,danger,warning]
+  - [**class**] Sets the class of the button. \* If not defined, it comes with the library's default button style (light)
+  - [**type**] Default button styles available in the library [primary,secondary,success,danger,warning,light]
   - ![buttonList](https://user-images.githubusercontent.com/49169815/203387178-40f54bf8-0222-4aa6-938a-716454d79154.png)
 
   - [**click**] Function to run after clicking the button.
@@ -139,21 +139,21 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 
 ## Default Value List
 
-| Property             | Value                    |
-| -------------------- | ------------------------ |
-| portalElement        | document.body            |
-| portalOverflowHidden | true                     |
-| animationStatus      | true                     |
-| closeIcon            | true                     |
-| closeBackgroundClick | true                     |
-| type                 | false                    |
-| autoCloseDuration    | false                    |
-| draggable            | false                    |
-| html                 | false                    |
-| buttons[] > class    | dnd-alert-default-button |
-| theme                | white                    |
-| opacity              | 1.00                     |
-| textAlign            | left                     |
+| Property             | Value         |
+| -------------------- | ------------- |
+| portalElement        | document.body |
+| portalOverflowHidden | true          |
+| animationStatus      | true          |
+| closeIcon            | true          |
+| closeBackgroundClick | true          |
+| type                 | false         |
+| autoCloseDuration    | false         |
+| draggable            | false         |
+| html                 | false         |
+| buttons[] > class    | light         |
+| theme                | white         |
+| opacity              | 1.00          |
+| textAlign            | left          |
 
 ## BAG_ELEMENT
 
