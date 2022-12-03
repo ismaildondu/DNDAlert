@@ -96,7 +96,7 @@ class ALERT_CONTEXT {
     Object.keys(this._context).forEach((key) => {
       let privateKeys = Object.keys(this.CONTEXT_PRIVATE_PROPS);
       if (privateKeys.includes(key)) {
-        throw new Error(`DNDAlert: ${key} is private property!`);
+        throw new Error(`DNDAlert: ${key} is private property!`); // Manual error because error manager is a main class (DNDAlert)
       }
     });
   }
