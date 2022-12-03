@@ -6,8 +6,6 @@ License: MIT
 
 class ALERT_CONTEXT {
   constructor(props = {}) {
-    this._context = { ...props };
-
     this.CONTEXT_QUERY_NAME = {
       message: "message",
       title: "title",
@@ -28,15 +26,19 @@ class ALERT_CONTEXT {
       openAnimationStatus: "openAnimationStatus",
       closeIcon: "closeIcon",
 
-      containerRef: "containerRef",
-      content_boxRef: "content_boxRef",
-      alert_titleRef: "alert_titleRef",
-      alert_messageRef: "alert_messageRef",
-      headerRef: "headerRef",
-      button_groupRef: "button_groupRef",
-
       TEMP_STYLE_NODE: "TEMP_STYLE_NODE",
     };
+    this.CONTEXT_PRIVATE_PROPS = {
+      containerRef: null,
+      content_boxRef: null,
+      alert_titleRef: null,
+      alert_messageRef: null,
+      headerRef: null,
+      button_groupRef: null,
+    };
+
+    this.INIT_PRIVATE_TO_NAME();
+
     this.CONTEXT_DEFAULT_VALUES = {
       closeBackgroundClick: true,
       animationStatus: true,
@@ -50,13 +52,7 @@ class ALERT_CONTEXT {
       textAlign: "left",
       opacity: 1,
       portalElement: document.body,
-
-      containerRef: null,
-      content_boxRef: null,
-      alert_titleRef: null,
-      alert_messageRef: null,
-      headerRef: null,
-      button_groupRef: null,
+      ...this.CONTEXT_PRIVATE_PROPS,
     };
     this.CONTEXT_PRIVATE_RESPONSE_LIST = [
       this.CONTEXT_QUERY_NAME.closeBackgroundClick,
@@ -78,6 +74,31 @@ class ALERT_CONTEXT {
       this.CONTEXT_QUERY_NAME.closeIcon,
       this.CONTEXT_QUERY_NAME.animationStatus,
     ];
+
+    this._context = { ...props };
+    this.CONTEXT_PRIVATE_ERROR_HANDLER();
+  }
+
+  INIT_PRIVATE_TO_NAME() {
+    // CONTEXT_PRIVATE_PROPS keys set to CONTEXT_QUERY_NAME
+    let privateKeys = Object.keys(this.CONTEXT_PRIVATE_PROPS);
+    let privateProps = {};
+    privateKeys.forEach((key) => {
+      privateProps[key] = key;
+    });
+    this.CONTEXT_QUERY_NAME = {
+      ...this.CONTEXT_QUERY_NAME,
+      ...privateProps,
+    };
+  }
+  CONTEXT_PRIVATE_ERROR_HANDLER() {
+    // If the user enters a private property
+    Object.keys(this._context).forEach((key) => {
+      let privateKeys = Object.keys(this.CONTEXT_PRIVATE_PROPS);
+      if (privateKeys.includes(key)) {
+        throw new Error(`DNDAlert: ${key} is private property!`);
+      }
+    });
   }
 
   CONTEXT_QUERY_NAME_CHECKER(key) {
