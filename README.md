@@ -12,7 +12,6 @@
 </p>
 
 ## Features
-
 - SVG Types ( success 🟢 , error 🔴 , warning 🟠, info 🔵 )
 - Unlimited button support
 - HTML message support
@@ -21,7 +20,7 @@
 - Responsive
 - Animation
 - Theme (dark AND white)
-- ✨[NEW] Draggable
+- Draggable
 
 ## Examples
 
