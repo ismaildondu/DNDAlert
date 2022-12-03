@@ -141,19 +141,19 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 
 | Property             | Value                    |
 | -------------------- | ------------------------ |
-| textAlign            | left                     |
 | portalElement        | document.body            |
 | portalOverflowHidden | true                     |
-| html                 | false                    |
-| closeBackgroundClick | true                     |
-| type                 | false                    |
-| buttons[] > class    | dnd-alert-default-button |
-| theme                | white                    |
-| opacity              | 1                        |
-| autoCloseDuration    | false                    |
-| draggable            | false                    |
 | animationStatus      | true                     |
 | closeIcon            | true                     |
+| closeBackgroundClick | true                     |
+| type                 | false                    |
+| autoCloseDuration    | false                    |
+| draggable            | false                    |
+| html                 | false                    |
+| buttons[] > class    | dnd-alert-default-button |
+| theme                | white                    |
+| opacity              | 1.00                     |
+| textAlign            | left                     |
 
 ## BAG_ELEMENT
 
