@@ -329,9 +329,6 @@ class DNDAlert extends ALERT_CONTEXT {
     let close_button = document.createElement("button");
     close_button.classList.add(this.CLASS_LIST[this.THEME].close_button);
     close_button.innerHTML = this.SVG_LIST.close;
-    if (this.THEME === this.THEME_ENUM.DARK) {
-      close_button.style.color = "#000";
-    }
     close_button.addEventListener("click", () => {
       this.removeContainer();
     });
