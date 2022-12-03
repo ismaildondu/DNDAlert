@@ -228,7 +228,7 @@ class DNDAlert extends ALERT_CONTEXT {
   createContainer() {
     let container = document.createElement("div");
     container.classList.add(this.CLASS_LIST.container);
-    this.CONTEXT_PROVIDER_SET("containerRef", container);
+    this.CONTEXT_PROVIDER_SET(this.CONTEXT_QUERY_NAME.containerRef, container);
   }
   createContentBox() {
     let opacity = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.opacity);
@@ -237,24 +237,36 @@ class DNDAlert extends ALERT_CONTEXT {
     content_box.style.opacity = opacity;
     if (this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.animationStatus)) {
       content_box.classList.add(this.CLASS_LIST.openAnimation.class);
-      this.CONTEXT_PROVIDER_SET("openAnimationStatus", true);
+      this.CONTEXT_PROVIDER_SET(
+        this.CONTEXT_QUERY_NAME.openAnimationStatus,
+        true
+      );
       content_box.addEventListener("animationend", () => {
         if (
           content_box.classList.contains(this.CLASS_LIST.openAnimation.class)
         ) {
           content_box.classList.remove(this.CLASS_LIST.openAnimation.class);
-          this.CONTEXT_PROVIDER_SET("openAnimationStatus", false);
+          this.CONTEXT_PROVIDER_SET(
+            this.CONTEXT_QUERY_NAME.openAnimationStatus,
+            false
+          );
         }
       });
     }
-    this.CONTEXT_PROVIDER_SET("content_boxRef", content_box);
+    this.CONTEXT_PROVIDER_SET(
+      this.CONTEXT_QUERY_NAME.content_boxRef,
+      content_box
+    );
   }
   createAlertTitle() {
     let title = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.title);
     let alert_title = document.createElement("h1");
     alert_title.classList.add(this.CLASS_LIST[this.THEME].title);
     alert_title.innerText = title;
-    this.CONTEXT_PROVIDER_SET("alert_titleRef", alert_title);
+    this.CONTEXT_PROVIDER_SET(
+      this.CONTEXT_QUERY_NAME.alert_titleRef,
+      alert_title
+    );
   }
 
   createSvgElement() {
@@ -286,7 +298,10 @@ class DNDAlert extends ALERT_CONTEXT {
 
     if (type) alert_message.prepend(this.createSvgElement());
 
-    this.CONTEXT_PROVIDER_SET("alert_messageRef", alert_message);
+    this.CONTEXT_PROVIDER_SET(
+      this.CONTEXT_QUERY_NAME.alert_messageRef,
+      alert_message
+    );
   }
 
   createTopRightCloseButton() {
@@ -314,7 +329,7 @@ class DNDAlert extends ALERT_CONTEXT {
 
     if (closeIcon) header.appendChild(this.createTopRightCloseButton());
 
-    this.CONTEXT_PROVIDER_SET("headerRef", header);
+    this.CONTEXT_PROVIDER_SET(this.CONTEXT_QUERY_NAME.headerRef, header);
   }
 
   bagCreator() {
@@ -358,7 +373,10 @@ class DNDAlert extends ALERT_CONTEXT {
       buttonGroup.appendChild(buttonElement);
     });
 
-    this.CONTEXT_PROVIDER_SET("button_groupRef", buttonGroup);
+    this.CONTEXT_PROVIDER_SET(
+      this.CONTEXT_QUERY_NAME.button_groupRef,
+      buttonGroup
+    );
   }
 
   createMainElements() {
