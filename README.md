@@ -1,6 +1,7 @@
 # DNDAlert.js
-![Adsız tasarım (4)](https://user-images.githubusercontent.com/49169815/205487757-58648e33-d90a-4b10-b6f3-02edf7cf9b11.png)
-
+<p align="center">
+![Adsız tasarım (5)](https://user-images.githubusercontent.com/49169815/205487801-24197752-eccd-481b-b3b7-66011f5b0910.png)
+</p>
 ![dndalert](https://user-images.githubusercontent.com/49169815/203099497-589df1a2-63fb-4c97-aeb2-d4cb80233872.png)
 
 <p align="center">
