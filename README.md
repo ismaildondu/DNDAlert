@@ -1,6 +1,7 @@
 # DNDAlert.js
 <p align="center">
-  <img width="500" src="[https://img.shields.io/github/license/ismailfp/DNDAlert?style=plastic](https://user-images.githubusercontent.com/49169815/205487801-24197752-eccd-481b-b3b7-66011f5b0910.png)" alt="DNDAlert-Logo">
+  <img width="500" src="https://user-images.githubusercontent.com/49169815/205487856-f4c9053a-a07f-4873-b3cd-c8c72ea5bf91.png" alt="DNDAlert-Logo">
+
 
 </p>
 ![dndalert](https://user-images.githubusercontent.com/49169815/203099497-589df1a2-63fb-4c97-aeb2-d4cb80233872.png)
