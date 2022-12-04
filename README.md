@@ -20,7 +20,7 @@
 - Callback bag
 - Responsive
 - Animation
-- Theme (dark AND white)
+- Theme (white,dark)
 - Draggable
 
 ## Examples
@@ -31,13 +31,10 @@
 
 ```javascript
 const Alert = new DNDAlert({
-  title: "Test Alert",
   message: "DNDAlert is a simple JavaScript library alert for web developers.",
 });
 ```
 
-- **[title]**
-  - Null values ​​cannot be entered. This is the title of the alert
 - **[message]**
   - Null values ​​cannot be entered. The content of the alert.
 
@@ -87,6 +84,8 @@ const Alert = new DNDAlert({
 });
 ```
 
+- **[title]**
+  - Message title (If not given, a modal with no header is created.)
 - **[html]**
   - Message whether to use HTML in the message.
 - **[buttons]**
