@@ -26,7 +26,7 @@
 - Callback bag
 - Responsive
 - Animation
-- Theme (white,dark)
+- Theme (white 🌕 , dark 🌑)
 - Draggable
 
 ## Simple Usage
@@ -122,7 +122,7 @@ const Alert = new DNDAlert({
 
 * [**opacity**] Modal css opacity.
 * [**animationStatus**] If true, opening and closing will be accompanied by animation.
-* [**draggable**] Modal draggable.
+* [**draggable**] Modal draggable. (Title required)
 
 ## Installation
 
