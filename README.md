@@ -7,11 +7,21 @@
  <p align="center">
   <img width="400" src="https://user-images.githubusercontent.com/49169815/205488419-e742283a-5449-4dd4-8bc3-c88708e8c2ca.gif" alt="DNDAlert-GIF">
 </p>
+<<<<<<< HEAD
+=======
+
+>>>>>>> a4e1a391fa1c857c37bbefe9cb24ba2d80ad11c0
 
 <p align="center">
 <img width="100" src="https://img.shields.io/github/license/ismailfp/DNDAlert?style=plastic" alt="GitHub">
 <img width="100" src="https://img.shields.io/github/stars/ismailfp/dndalert?style=social" alt="GitHub Repo stars">
 </p>
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> a4e1a391fa1c857c37bbefe9cb24ba2d80ad11c0
 
 ## Examples
 
