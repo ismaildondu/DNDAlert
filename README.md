@@ -1,7 +1,7 @@
 # DNDAlert.js
 
 <p align="center">
-  <img width="400" src="https://user-images.githubusercontent.com/49169815/205487856-f4c9053a-a07f-4873-b3cd-c8c72ea5bf91.png" alt="DNDAlert-Logo">
+  <img width="400" src="https://user-images.githubusercontent.com/49169815/205495609-543a23d4-5cfb-4a27-b5cd-df62466a9220.png" alt="DNDAlert-Logo">
 </p>
  <p align="center">DNDAlert is a simple JavaScript library alert for web developers.</p>
  <p align="center">
