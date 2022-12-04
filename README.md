@@ -1,8 +1,7 @@
 # DNDAlert.js
 <p align="center">
-  <img width="500" src="https://user-images.githubusercontent.com/49169815/205487856-f4c9053a-a07f-4873-b3cd-c8c72ea5bf91.png" alt="DNDAlert-Logo">
-
-
+  <img width="400" src="https://user-images.githubusercontent.com/49169815/205487856-f4c9053a-a07f-4873-b3cd-c8c72ea5bf91.png" alt="DNDAlert-Logo">
+<p style="text-align:center;">DNDAlert is a simple JavaScript library alert for web developers.</p>
 </p>
 ![dndalert](https://user-images.githubusercontent.com/49169815/203099497-589df1a2-63fb-4c97-aeb2-d4cb80233872.png)
 
@@ -12,8 +11,8 @@
 
 </p>
 
-<p style="text-align:center;">DNDAlert is a simple JavaScript library alert for web developers.
-</p>
+
+
 
 ## Examples
 
