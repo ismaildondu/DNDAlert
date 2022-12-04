@@ -5,7 +5,7 @@
 </p>
  <p align="center">DNDAlert is a simple JavaScript library alert for web developers.</p>
  <p align="center">
-  <img width="400" src="https://user-images.githubusercontent.com/49169815/205488419-e742283a-5449-4dd4-8bc3-c88708e8c2ca.gif" alt="DNDAlert-GIF">
+  <img width="400" src="https://user-images.githubusercontent.com/49169815/205495645-b5b53d22-5874-4104-b806-91a87837d6e0.png" alt="DNDAlert-GIF">
 </p>
 
 <p align="center">
