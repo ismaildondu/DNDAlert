@@ -4,6 +4,10 @@
   <img width="400" src="https://user-images.githubusercontent.com/49169815/205487856-f4c9053a-a07f-4873-b3cd-c8c72ea5bf91.png" alt="DNDAlert-Logo">
 </p>
  <p align="center">DNDAlert is a simple JavaScript library alert for web developers.</p>
+ <p align="center">
+  <img width="400" src="https://user-images.githubusercontent.com/49169815/205488419-e742283a-5449-4dd4-8bc3-c88708e8c2ca.gif" alt="DNDAlert-GIF">
+</p>
+
 
 <p align="center">
 <img width="100" src="https://img.shields.io/github/license/ismailfp/DNDAlert?style=plastic" alt="GitHub">
