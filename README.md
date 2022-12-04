@@ -94,7 +94,7 @@ const Alert = new DNDAlert({
   - [**text**] Text inside the button
   - [**class**] Sets the class of the button. \* If not defined, it comes with the library's default button style (light)
   - [**type**] Default button styles available in the library [primary,secondary,success,danger,warning,light]
-  - ![buttonList](https://user-images.githubusercontent.com/49169815/203387178-40f54bf8-0222-4aa6-938a-716454d79154.png)
+  - ![buttonList](https://user-images.githubusercontent.com/49169815/205487542-a010d803-93f0-471c-bb8c-85e7169a4bee.png)
 
   - [**click**] Function to run after clicking the button.
     - The library sends a BAG_ELEMENT object to this function, which contains the CLOSE_MODAL function needed to close the modal
