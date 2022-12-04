@@ -11,6 +11,10 @@
 <p style="text-align:center;">DNDAlert is a simple JavaScript library alert for web developers.
 </p>
 
+## Examples
+
+![DNDAlert_Examples](https://user-images.githubusercontent.com/49169815/205486806-bda5a6ea-e3cf-4483-bd76-9722c0702917.png)
+
 ## Features
 
 - SVG Types ( success 🟢 , error 🔴 , warning 🟠, info 🔵 )
@@ -22,10 +26,6 @@
 - Animation
 - Theme (white,dark)
 - Draggable
-
-## Examples
-
-![DNDAlert_Examples](https://user-images.githubusercontent.com/49169815/205486583-f47d5a0b-613a-4c66-88bd-8be615b1a021.png)
 
 ## Simple Usage
 
