@@ -25,7 +25,7 @@
 
 ## Examples
 
-![Adsız tasarım (2)](https://user-images.githubusercontent.com/49169815/203037702-af2143cf-1be0-4efa-85f5-ee015e373fc5.png)
+![DNDAlert_Examples](https://user-images.githubusercontent.com/49169815/205486583-f47d5a0b-613a-4c66-88bd-8be615b1a021.png)
 
 ## Simple Usage
 
@@ -149,6 +149,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 | autoCloseDuration    | false         |
 | draggable            | false         |
 | html                 | false         |
+| title                | false         |
 | buttons[] > class    | light         |
 | theme                | white         |
 | opacity              | 1.00          |
