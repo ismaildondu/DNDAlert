@@ -23,61 +23,30 @@
 height: 1890px;
 
 }
-.fakeskelaton{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-direction: flex-start;
-}
-.fakeseklaton-item{
-
-  height:15px;
-  background-color: #eee;
-  margin: 10px;
-  border-radius: 5px;
-  animation: fakeSkeleton 1s infinite;
-}
-
-.w100{
-  width: 100px;
-}
-.w250{
-  width: 200px;
-  height: 20px;
-}
 </style>
 <script src="../DNDAlert.js"></script>
 <script>
   function example() {
   const DNDALERT = new DNDAlert({
-     // INPUT 
-    message:`
-    <div class="fakeskelaton">
-        <div class="fakeseklaton-item w100">
-        </div>
-
-        <div class="fakeseklaton-item w250">
-        </div>
-        <div class="fakeseklaton-item w250">
-        </div>
-        <div class="fakeseklaton-item w150">
-        </div>
-
-        
-
-      </div>
-    
-    `,
-    html: true,
+    title: "Test Alert",
+    message:
+      "DNDAlert is a simple JavaScript library alert for web developers.",
+    type: "info",
+    html: false,
     buttons: [
       {
-        text: " ",
-        type: "light",
+        text: "Ok",
+        type: "primary",
         click: (bag) => {
           alert("Ok button clicked");
         },
       },
-    
+      {
+        text: "Cancel",
+        click: (bag) => {
+          bag.CLOSE_MODAL();
+        },
+      },
     ],
     closeBackgroundClick: true,
     portalElement: document.querySelector("body"),
@@ -92,7 +61,7 @@ height: 1890px;
       console.log(bag.PROPETIES);
     },
     opacity: 1,
-    
+    autoCloseDuration:3000,
     draggable: true,
     animationStatus: true,
     closeIcon:false,
