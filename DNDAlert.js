@@ -169,7 +169,7 @@ class DNDAlert extends ALERT_CONTEXT {
 
     this.containerClickClose(CONTAINER);
   }
-  DRAW() {
+  async DRAW() {
     let onOpen = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.onOpen);
     let autoCloseDuration = this.CONTEXT_PROVIDER_GET(
       this.CONTEXT_QUERY_NAME.autoCloseDuration
@@ -179,7 +179,7 @@ class DNDAlert extends ALERT_CONTEXT {
       this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.containerRef),
     ]);
     if (onOpen) {
-      onOpen(this.bagCreator());
+      await onOpen(this.bagCreator());
     }
     if (
       autoCloseDuration &&
@@ -770,11 +770,11 @@ class DNDAlert extends ALERT_CONTEXT {
       this.elementRuiner();
     }
   }
-  runOnClose() {
+  async runOnClose() {
     let onClose = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.onClose);
     if (onClose && !this.IS_CLOSE) {
       this.IS_CLOSE = true;
-      onClose(this.bagCreator());
+      await onClose(this.bagCreator());
     }
   }
   elementRuiner() {
