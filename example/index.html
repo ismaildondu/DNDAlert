@@ -10,69 +10,66 @@
 
 <body>
 
-<button onclick="example()">ALERT</button>
- 
-<div id="modal"></div>
-
+  <button onclick="example()">ALERT</button>
 
 
 </body>
 
 <style>
-  body{
-height: 1890px;
+  body {
+    height: 1890px;
 
-}
+  }
 </style>
 <script src="../DNDAlert.js"></script>
 <script>
   function example() {
-  const DNDALERT = new DNDAlert({
-    title: "Test Alert",
-    message:
-      "DNDAlert is a simple JavaScript library alert for web developers.",
-    type: "info",
-    html: false,
-    buttons: [
-      {
-        text: "Ok",
-        type: "primary",
-        click: (bag) => {
-          alert("Ok button clicked");
+    const DNDALERT = new DNDAlert({
+      title: "Test Alert",
+      message:
+        "DNDAlert is a simple JavaScript library alert for web developers.",
+      type: "info",
+      html: false,
+      buttons: [
+        {
+          text: "Ok",
+          type: "primary",
+          click: (bag) => {
+            alert("Ok button clicked");
+          },
         },
-      },
-      {
-        text: "Cancel",
-        click: (bag) => {
-          bag.CLOSE_MODAL();
+        {
+          text: "Cancel",
+          click: (bag) => {
+            bag.CLOSE_MODAL();
+          },
         },
+      ],
+      closeBackgroundClick: true,
+      portalElement: document.querySelector("body"),
+      textAlign: "center",
+      theme: "white",
+      onOpen: (bag) => {
+        console.log("Modal Opened");
+        console.log(bag.PROPETIES);
       },
-    ],
-    closeBackgroundClick: true,
-    portalElement: document.querySelector("body"),
-    textAlign: "center",
-    theme:"white",
-    onOpen:(bag)=>{
-      console.log("Modal Opened");
-      console.log(bag.PROPETIES);
-    },
-    onClose:(bag)=>{
-      console.log("Modal Closed");
-      console.log(bag.PROPETIES);
-    },
-    opacity: 1,
-    autoCloseDuration:3000,
-    draggable: true,
-    animationStatus: true,
-    closeIcon:false,
-    portalOverflowHidden:true
-   
-   
-  });
-}
+      onClose: (bag) => {
+        console.log("Modal Closed");
+        console.log(bag.PROPETIES);
+      },
+      opacity: 1,
+      autoCloseDuration: 3000,
+      draggable: true,
+      animationStatus: true,
+      closeIcon: false,
+      portalOverflowHidden: true
+
+
+    });
+  }
 
 </script>
-</html>
 
 </html>
 
+</html>
