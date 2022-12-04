@@ -15,7 +15,7 @@
 
 ## Examples
 
-![DNDAlert_Examples](https://user-images.githubusercontent.com/49169815/205488961-29ad97fb-8929-46d9-b610-c2e45ee30e67.png)
+![DNDAlert_Examples](https://user-images.githubusercontent.com/49169815/205493941-d39aaa0e-aa27-4824-b9e2-7b0885987799.png)
 
 ## Features
 
