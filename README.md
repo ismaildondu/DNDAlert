@@ -10,7 +10,7 @@
 
 <p align="center">
 <img width="100" src="https://img.shields.io/github/license/ismailfp/DNDAlert?style=plastic" alt="GitHub">
-<img width="150" src="https://img.shields.io/npm/dt/dndalertjs?label=DOWNLOADS&style=plastic" alt="GitHub Repo stars">
+<img width="130" src="https://img.shields.io/npm/dt/dndalertjs?&style=plastic" alt="GitHub Repo stars">
 <img width="100" src="https://img.shields.io/github/stars/ismailfp/dndalert?style=social" alt="GitHub Repo stars">
 
 </p>
