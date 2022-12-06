@@ -57,30 +57,25 @@ class ALERT_CONTEXT {
       portalElement: document.body,
       ...this.CONTEXT_PRIVATE_PROPS,
     };
-    this.CONTEXT_PRIVATE_RESPONSE_LIST = [
-      this.CONTEXT_QUERY_NAME.closeBackgroundClick,
-      this.CONTEXT_QUERY_NAME.type,
-      this.CONTEXT_QUERY_NAME.html,
-      this.CONTEXT_QUERY_NAME.buttons,
-      this.CONTEXT_QUERY_NAME.textAlign,
-      this.CONTEXT_QUERY_NAME.opacity,
-      this.CONTEXT_QUERY_NAME.portalElement,
-      this.CONTEXT_QUERY_NAME.portalOverflowHidden,
-      this.CONTEXT_QUERY_NAME.containerRef,
-      this.CONTEXT_QUERY_NAME.content_boxRef,
-      this.CONTEXT_QUERY_NAME.alert_titleRef,
-      this.CONTEXT_QUERY_NAME.alert_messageRef,
-      this.CONTEXT_QUERY_NAME.headerRef,
-      this.CONTEXT_QUERY_NAME.button_groupRef,
-      this.CONTEXT_QUERY_NAME.autoCloseDuration,
-      this.CONTEXT_QUERY_NAME.draggable,
-      this.CONTEXT_QUERY_NAME.closeIcon,
-      this.CONTEXT_QUERY_NAME.animationStatus,
-      this.CONTEXT_QUERY_NAME.title,
-    ];
+
+    this.INIT_DEFAULT_VALUES();
 
     this._context = { ...props };
     this.CONTEXT_PRIVATE_ERROR_HANDLER();
+  }
+
+  INIT_DEFAULT_VALUES() {
+    let keys = Object.keys(this.CONTEXT_QUERY_NAME);
+    let deletedList = [
+      this.CONTEXT_QUERY_NAME.TEMP_STYLE_NODE,
+      this.CONTEXT_QUERY_NAME.message,
+      this.CONTEXT_QUERY_NAME.onClose,
+      this.CONTEXT_QUERY_NAME.onOpen,
+      this.CONTEXT_QUERY_NAME.theme,
+      this.CONTEXT_QUERY_NAME.openAnimationStatus,
+    ];
+    keys = keys.filter((key) => !deletedList.includes(key));
+    this.CONTEXT_PRIVATE_RESPONSE_LIST = keys;
   }
 
   INIT_PRIVATE_TO_NAME() {
