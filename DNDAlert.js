@@ -1,8 +1,10 @@
-/* 
-DNDAlert is a simple JavaScript library alert for web developers.
-by İsmail Döndü - 2023
-License: MIT
-*/
+/*
+ *  DNDAlert.js
+ *  Simple JavaScript library alert for web developers.
+ *
+ *  License: MIT (c) 2022
+ *  Author: Ismail Dondu
+ */
 
 class ALERT_CONTEXT {
   constructor(props = {}) {
