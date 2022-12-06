@@ -1,6 +1,6 @@
 {
   "name": "dndalertjs",
-  "version": "2.3.9",
+  "version": "2.3.10",
   "description": "DNDAlert is a simple JavaScript library alert for web developers.",
   "main": "DNDAlert.js",
   "directories": {
