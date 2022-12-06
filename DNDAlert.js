@@ -445,6 +445,11 @@ class DNDAlert extends Context {
       throw new Error(this.ERROR_LIST.buttons_array);
     } else if (buttons.length > 0) {
       buttons.forEach((button) => {
+        if (button.click) {
+          console.warn(this.ERROR_LIST.button_click_deprecated);
+          button.onClick = button.click;
+        }
+
         if (!button.text) {
           throw new Error(this.ERROR_LIST.button_text);
         }
@@ -627,12 +632,16 @@ class DNDAlert extends Context {
         this.TYPE_LIST.join(", "),
       buttons_array: this.ERROR_PREFIX + "Buttons must be an array.",
       button_text: this.ERROR_PREFIX + "Button text is required.",
-      button_click: this.ERROR_PREFIX + "Button click is required.",
-      button_click_type: this.ERROR_PREFIX + "Button click must be a function.",
+      button_click: this.ERROR_PREFIX + "Button onClick is required.",
+      button_click_type:
+        this.ERROR_PREFIX + "Button onClick must be a function.",
       button_type:
         this.ERROR_PREFIX +
         "Button type is not valid. Type must be one of these: " +
         this.BUTTON_TYPE_LIST.join(", "),
+      button_click_deprecated:
+        this.ERROR_PREFIX +
+        "Button click is deprecated for cleaner code. Use onClick.",
       theme:
         this.ERROR_PREFIX +
         "Theme is not valid. Theme must be one of these: " +
