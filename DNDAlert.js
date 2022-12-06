@@ -6,7 +6,7 @@
  *  Author: Ismail Dondu
  */
 
-class ALERT_CONTEXT {
+class Context {
   constructor(props = {}) {
     this.CONTEXT_QUERY_NAME = {
       message: "message",
@@ -133,9 +133,9 @@ class ALERT_CONTEXT {
   }
 }
 
-class DNDAlert extends ALERT_CONTEXT {
+class DNDAlert extends Context {
   constructor(props) {
-    super(props); // <- ALERT_CONTEXT
+    super(props);
     this.STARTER();
   }
 
