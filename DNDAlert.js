@@ -411,9 +411,9 @@ class DNDAlert extends Context {
       buttonElement.innerText = button.text;
       buttonElement.className = tempClass;
       buttonElement.addEventListener("click", async () => {
-        await button.click(this.bagCreator());
+        await button.onClick(this.bagCreator());
       });
-      buttonGroup.appendChild(buttonElement);
+      this.appendChild(buttonGroup, [buttonElement]);
     });
 
     this.CONTEXT_PROVIDER_SET(
@@ -448,10 +448,10 @@ class DNDAlert extends Context {
         if (!button.text) {
           throw new Error(this.ERROR_LIST.button_text);
         }
-        if (!button.click) {
+        if (!button.onClick) {
           throw new Error(this.ERROR_LIST.button_click);
         }
-        if (typeof button.click !== "function") {
+        if (typeof button.onClick !== "function") {
           throw new Error(this.ERROR_LIST.button_click_type);
         }
         if (button.type && !this.BUTTON_TYPE_LIST.includes(button.type)) {
@@ -813,7 +813,7 @@ class DNDAlert extends Context {
       this.CONTEXT_QUERY_NAME.TEMP_STYLE_NODE,
       TEMP_STYLE_NODE
     );
-    document.head.appendChild(TEMP_STYLE_NODE);
+    this.appendChild(document.head, [TEMP_STYLE_NODE]);
   }
 
   classAdder(element, [...classes]) {

@@ -55,14 +55,14 @@ const Alert = new DNDAlert({
     {
       text: "Ok",
       class: "btn btn-primary",
-      click: (bag) => {
+      onClick: (bag) => {
         alert("Ok button clicked");
       },
     },
     {
       text: "Cancel",
       type: "danger",
-      click: (bag) => {
+      onClick: (bag) => {
         bag.CLOSE_MODAL();
       },
     },
@@ -100,10 +100,10 @@ const Alert = new DNDAlert({
   - [**type**] Default button styles available in the library [primary,secondary,success,danger,warning,light]
   - ![buttonList](https://user-images.githubusercontent.com/49169815/205487542-a010d803-93f0-471c-bb8c-85e7169a4bee.png)
 
-  - [**click**] Function to run after clicking the button.
+  - [**onClick**] Function to run after clicking the button.
     - The library sends a BAG_ELEMENT object to this function, which contains the CLOSE_MODAL function needed to close the modal
       ```
-      click: (BAG_ELEMENT) => {
+      onClick: (BAG_ELEMENT) => {
            BAG_ELEMENT.CLOSE_MODAL();
          },
       ```
