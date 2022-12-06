@@ -78,13 +78,14 @@ const Alert = new DNDAlert({
   },
   onClose: (bag) => {
     console.log("Modal Closed");
-    console.log(bag.PROPETIES);
+    console.log(bag.PROPERTIES);
   },
   opacity: 1,
   autoCloseDuration: 3000,
   draggable: true,
   animationStatus: true,
   closeIcon: false,
+  sourceControlWarning: true,
 });
 ```
 
@@ -126,6 +127,8 @@ const Alert = new DNDAlert({
 * [**animationStatus**] If true, opening and closing will be accompanied by animation.
 * [**draggable**] Modal draggable. (Title required)
 
+* [**sourceControlWarning**] If true, when the modal is run, it makes a request to NPM and compares the current version with the local version. If the versions are different, a warning message in the console. (If you don't want to make a npm version request, you can turn it off.)
+
 ## Installation
 
 ```sh
@@ -149,6 +152,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 | animationStatus      | true          |
 | closeIcon            | true          |
 | closeBackgroundClick | true          |
+| sourceControlWarning | true          |
 | type                 | false         |
 | autoCloseDuration    | false         |
 | draggable            | false         |
@@ -163,11 +167,12 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 
 - onOpen,onClose and click function of the buttons
 
-| Property                    | ?                                                                    |
-| --------------------------- | -------------------------------------------------------------------- |
-| CLOSE_MODAL                 | Modal closing function                                               |
-| PROPETIES                   | Contains general information                                         |
-| PROPETIES->CREATED_TIME     | Modal opening date                                                   |
-| PROPETIES->THEME            | THEME                                                                |
-| PROPETIES->CONTEXT          | Everything in Context                                                |
-| PROPETIES->HOW_MANY_SECONDS | Only onClose BAG (Shows how many seconds the alert on after closing) |
+| Property                     | ?                                                                    |
+| ---------------------------- | -------------------------------------------------------------------- |
+| CLOSE_MODAL                  | Modal closing function                                               |
+| PROPERTIES                   | Contains general information                                         |
+| PROPERTIES->CREATED_TIME     | Modal opening date                                                   |
+| PROPERTIES->THEME            | THEME                                                                |
+| PROPERTIES->VERSION          | Current version (DNDAlert - NPM)                                     |
+| PROPERTIES->CONTEXT          | Everything in Context                                                |
+| PROPERTIES->HOW_MANY_SECONDS | Only onClose BAG (Shows how many seconds the alert on after closing) |

@@ -27,6 +27,7 @@ class Context {
       animationStatus: "animationStatus",
       openAnimationStatus: "openAnimationStatus",
       closeIcon: "closeIcon",
+      sourceControlWarning: "sourceControlWarning",
 
       TEMP_STYLE_NODE: "TEMP_STYLE_NODE",
     };
@@ -55,6 +56,7 @@ class Context {
       textAlign: "left",
       opacity: 1,
       portalElement: document.body,
+      sourceControlWarning: true,
       ...this.CONTEXT_PRIVATE_PROPS,
     };
 
@@ -194,6 +196,14 @@ class DNDAlert extends Context {
     }
   }
 
+  infoLoader() {
+    this.VERSION = "2.4.1";
+    this.NPM = "www.npmjs.com/package/dndalertjs";
+    this.GITHUB = "www.github.com/ismailfp/DNDAlert";
+    this.IS_CLOSE = false;
+    this.CREATED_TIME = new Date().getTime();
+  }
+
   enumLoader() {
     this.OVERFLOW_ENUM = {
       HIDDEN: "hidden",
@@ -230,14 +240,15 @@ class DNDAlert extends Context {
   }
 
   PRE_INIT() {
-    this.IS_CLOSE = false; //  autoCloseDuration and onClose avoid conflict
-    this.CREATED_TIME = new Date().getTime();
+    this.isBrowser();
+    this.infoLoader();
 
     this.enumLoader();
     this.classListLoader();
     this.errorOptionsLoader();
     this.themeLoader();
     this.svgLoader();
+    this.sourceControl();
 
     this.BODY = this.getBodyElement();
     this.OPEN_ANIMATION_CLOSE_CONFLICT_TIME =
@@ -382,10 +393,11 @@ class DNDAlert extends Context {
       CLOSE_MODAL: () => {
         this.removeContainer();
       },
-      PROPETIES: {
+      PROPERTIES: {
         CREATED_TIME: this.CREATED_TIME,
         THEME: this.THEME,
         CONTEXT,
+        VERSION: this.VERSION,
       },
     };
 
@@ -703,6 +715,34 @@ class DNDAlert extends Context {
     ];
   }
 
+  sourceControl() {
+    if (
+      navigator.onLine &&
+      this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.sourceControlWarning)
+    ) {
+      let API = fetch("https://registry.npmjs.org/dndalertjs");
+      API.then((response) => {
+        response.json().then((data) => {
+          let latestVersion = data["dist-tags"].latest;
+          let currentVersion = this.VERSION;
+          if (latestVersion !== currentVersion) {
+            console.warn(
+              `\n\n DNDAlert: New version available: ${latestVersion} but you are using ${currentVersion}. \n Please update to latest version. \n\n ${this.NPM} \n\n or \n\n ${this.GITHUB} \n\n`
+            );
+          }
+        });
+      });
+    }
+  }
+
+  isBrowser() {
+    let isBrowser =
+      typeof window !== "undefined" && typeof document !== "undefined";
+    if (!isBrowser) {
+      throw new Error("DNDAlert: This library is only for browser.");
+    }
+  }
+
   svgLoader() {
     let theme = this.THEME;
     this.SVG_COLOR_LIST = {
@@ -785,9 +825,15 @@ class DNDAlert extends Context {
     if (onClose && !this.IS_CLOSE) {
       this.IS_CLOSE = true;
       let BAG = this.bagCreator();
-      let TIME_DIFF = new Date().getTime() - BAG.PROPETIES.CREATED_TIME;
+      let TIME_DIFF = new Date().getTime() - BAG.PROPERTIES.CREATED_TIME;
       let HOW_MANY_SECONDS = Math.floor(TIME_DIFF / 1000);
-      BAG = { ...BAG, PROPETIES: { ...BAG.PROPETIES, HOW_MANY_SECONDS } };
+      BAG = {
+        ...BAG,
+        PROPERTIES: {
+          ...BAG.PROPERTIES,
+          HOW_MANY_SECONDS,
+        },
+      };
       await onClose(BAG);
     }
   }

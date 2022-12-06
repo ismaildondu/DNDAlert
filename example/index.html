@@ -47,23 +47,23 @@
       ],
       closeBackgroundClick: true,
       portalElement: document.querySelector("body"),
+      portalOverflowHidden: true,
       textAlign: "center",
       theme: "white",
       onOpen: (bag) => {
         console.log("Modal Opened");
-        console.log(bag.PROPETIES);
+        console.log(bag.PROPERTIES);
       },
       onClose: (bag) => {
         console.log("Modal Closed");
-        console.log(bag.PROPETIES);
+        console.log(bag);
       },
       opacity: 1,
       autoCloseDuration: 3000,
       draggable: true,
       animationStatus: true,
       closeIcon: false,
-      portalOverflowHidden: true
-
+      sourceControlWarning: true,
 
     });
   }
