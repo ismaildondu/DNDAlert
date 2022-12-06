@@ -197,7 +197,7 @@ class DNDAlert extends Context {
   }
 
   infoLoader() {
-    this.VERSION = "2.4.1";
+    this.VERSION = "2.5.0";
     this.NPM = "www.npmjs.com/package/dndalertjs";
     this.GITHUB = "www.github.com/ismailfp/DNDAlert";
     this.IS_CLOSE = false;
