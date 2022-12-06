@@ -163,10 +163,11 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 
 - onOpen,onClose and click function of the buttons
 
-| Property                | ?                            |
-| ----------------------- | ---------------------------- |
-| CLOSE_MODAL             | Modal closing function       |
-| PROPETIES               | Contains general information |
-| PROPETIES->CREATED_TIME | Modal opening date(UNIX)     |
-| PROPETIES->THEME        | THEME                        |
-| PROPETIES->CONTEXT      | Everything in Context        |
+| Property                    | ?                                                                    |
+| --------------------------- | -------------------------------------------------------------------- |
+| CLOSE_MODAL                 | Modal closing function                                               |
+| PROPETIES                   | Contains general information                                         |
+| PROPETIES->CREATED_TIME     | Modal opening date                                                   |
+| PROPETIES->THEME            | THEME                                                                |
+| PROPETIES->CONTEXT          | Everything in Context                                                |
+| PROPETIES->HOW_MANY_SECONDS | Only onClose BAG (Shows how many seconds the alert on after closing) |

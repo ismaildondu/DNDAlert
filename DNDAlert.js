@@ -775,7 +775,11 @@ class DNDAlert extends Context {
     let onClose = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.onClose);
     if (onClose && !this.IS_CLOSE) {
       this.IS_CLOSE = true;
-      await onClose(this.bagCreator());
+      let BAG = this.bagCreator();
+      let TIME_DIFF = new Date().getTime() - BAG.PROPETIES.CREATED_TIME;
+      let HOW_MANY_SECONDS = Math.floor(TIME_DIFF / 1000);
+      BAG = { ...BAG, PROPETIES: { ...BAG.PROPETIES, HOW_MANY_SECONDS } };
+      await onClose(BAG);
     }
   }
   elementRuiner() {
