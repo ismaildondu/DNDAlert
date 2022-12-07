@@ -37,7 +37,9 @@ class Context {
       alert_titleRef: null,
       alert_messageRef: null,
       headerRef: null,
+      close_buttonRef: null,
       button_groupRef: null,
+      buttonsRef: null,
     };
 
     /*
@@ -236,7 +238,7 @@ class DNDAlert extends Context {
    * CREATED_TIME usage bagCreator() and runOnClose();
    */
   infoLoader() {
-    this.VERSION = "2.5.1";
+    this.VERSION = "2.5.2";
     this.NPM = "www.npmjs.com/package/dndalertjs";
     this.GITHUB = "www.github.com/ismailfp/DNDAlert";
     this.IS_CLOSE = false;
@@ -398,10 +400,15 @@ class DNDAlert extends Context {
       this.CLASS_LIST[this.THEME].close_button,
     ]);
     close_button.innerHTML = this.SVG_LIST.close;
-    close_button.addEventListener("click", () => {
+    let tempFunc = () => {
       this.removeContainer();
+    };
+    close_button.addEventListener("click", tempFunc);
+
+    this.CONTEXT_PROVIDER_SET(this.CONTEXT_QUERY_NAME.close_buttonRef, {
+      ref: close_button,
+      onClick: tempFunc,
     });
-    return close_button;
   }
 
   createHeader() {
@@ -420,7 +427,12 @@ class DNDAlert extends Context {
         this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.alert_titleRef),
       ]);
 
-    if (closeIcon) this.appendChild(header, [this.createTopRightCloseButton()]);
+    if (closeIcon) {
+      this.createTopRightCloseButton();
+      this.appendChild(header, [
+        this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.close_buttonRef).ref,
+      ]);
+    }
 
     this.CONTEXT_PROVIDER_SET(this.CONTEXT_QUERY_NAME.headerRef, header);
   }
@@ -449,7 +461,7 @@ class DNDAlert extends Context {
 
     let buttonGroup = document.createElement("div");
     this.classAdder(buttonGroup, [this.CLASS_LIST.superClass.button_group]);
-
+    let tempButtonRefArray = [];
     buttons.forEach((button) => {
       let tempClass;
       if (!button.class && button.type) {
@@ -461,16 +473,26 @@ class DNDAlert extends Context {
       let buttonElement = document.createElement("button");
       buttonElement.innerText = button.text;
       buttonElement.className = tempClass;
-      buttonElement.addEventListener("click", async () => {
+      let clickTemp = async () => {
         await button.onClick(this.bagCreator());
-      });
+      };
+      buttonElement.addEventListener("click", clickTemp);
       this.appendChild(buttonGroup, [buttonElement]);
+      tempButtonRefArray.push({
+        ref: buttonElement,
+        onClick: clickTemp,
+      });
     });
 
     this.CONTEXT_PROVIDER_SET(
       this.CONTEXT_QUERY_NAME.button_groupRef,
       buttonGroup
     );
+    this.CONTEXT_PROVIDER_SET(
+      this.CONTEXT_QUERY_NAME.buttonsRef,
+      tempButtonRefArray
+    );
+    console.log(this.CONTEXT_PROVIDER_GET_ALL());
   }
 
   createMainElements() {
@@ -917,10 +939,33 @@ class DNDAlert extends Context {
     }
   }
   elementRuiner() {
+    this.setBodyOverflow(this.OVERFLOW_ENUM.AUTO);
+
+    this.removeListener();
     this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.containerRef).remove();
     this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.TEMP_STYLE_NODE).remove();
-    this.setBodyOverflow(this.OVERFLOW_ENUM.AUTO);
+
     this.runOnClose();
+  }
+  removeListener() {
+    let buttons = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.buttons);
+    if (Array.isArray(buttons) && buttons.length > 0) {
+      const buttonList = this.CONTEXT_PROVIDER_GET(
+        this.CONTEXT_QUERY_NAME.buttonsRef
+      );
+      buttonList.forEach((button) => {
+        button.ref.removeEventListener("click", button.onClick);
+      });
+    }
+    let closeButtonStatus = this.CONTEXT_PROVIDER_GET(
+      this.CONTEXT_QUERY_NAME.closeIcon
+    );
+    if (closeButtonStatus) {
+      const closeButton = this.CONTEXT_PROVIDER_GET(
+        this.CONTEXT_QUERY_NAME.close_buttonRef
+      );
+      closeButton.ref.removeEventListener("click", closeButton.onClick);
+    }
   }
   setBodyOverflow(ENUM_VALUE) {
     if (Object.values(this.OVERFLOW_ENUM).includes(ENUM_VALUE)) {
