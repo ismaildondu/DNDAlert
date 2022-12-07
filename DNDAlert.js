@@ -40,6 +40,14 @@ class Context {
       button_groupRef: null,
     };
 
+    /*
+     * INIT_PRIVATE_TO_NAME()
+     * This function is used to add private
+     * properties to CONTEXT_QUERY_NAME.
+     *
+     * This is necessary because the user can
+     * enter the private property as a parameter.
+     */
     this.INIT_PRIVATE_TO_NAME();
 
     this.CONTEXT_DEFAULT_VALUES = {
@@ -60,9 +68,26 @@ class Context {
       ...this.CONTEXT_PRIVATE_PROPS,
     };
 
+    /*
+     * INIT_DEFAULT_VALUES()
+     * This function is used to add private
+     * properties to CONTEXT_PRIVATE_RESPONSE_LIST.
+     *
+     * Manually assigning values ​​is too much
+     * code like CONTEXT_QUERY_NAME.
+     */
     this.INIT_DEFAULT_VALUES();
 
     this._context = { ...props };
+
+    /*
+     * CONTEXT_PRIVATE_ERROR_HANDLER()
+     * This function is used to check if the user
+     * enters a private property.
+     *
+     * If the user enters a private property,
+     * an error is thrown.
+     */
     this.CONTEXT_PRIVATE_ERROR_HANDLER();
   }
 
@@ -81,7 +106,6 @@ class Context {
   }
 
   INIT_PRIVATE_TO_NAME() {
-    // CONTEXT_PRIVATE_PROPS keys set to CONTEXT_QUERY_NAME
     let privateKeys = Object.keys(this.CONTEXT_PRIVATE_PROPS);
     let privateProps = {};
     privateKeys.forEach((key) => {
@@ -93,18 +117,25 @@ class Context {
     };
   }
   CONTEXT_PRIVATE_ERROR_HANDLER() {
-    // If the user enters a private property
     Object.keys(this._context).forEach((key) => {
       let privateKeys = Object.keys(this.CONTEXT_PRIVATE_PROPS);
       if (privateKeys.includes(key)) {
-        throw new Error(`DNDAlert: ${key} is private property!`); // Manual error because error manager is a main class (DNDAlert)
+        throw new Error(`DNDAlert: ${key} is private property!`);
       }
     });
   }
 
+  /*
+   * CONTEXT_QUERY_NAME_CHECKER()
+   * This function is used to check if the user
+   * enters a valid property name.
+   *
+   * If the user enters an invalid property name,
+   * an error is thrown.
+   */
   CONTEXT_QUERY_NAME_CHECKER(key) {
     if (this.CONTEXT_QUERY_NAME[key] === undefined) {
-      throw new Error(`DNDAlert: ${key} is not a valid property name!`); // Manual error because error manager is a main class (DNDAlert)
+      throw new Error(`DNDAlert: ${key} is not a valid property name!`);
     }
   }
 
@@ -173,6 +204,7 @@ class DNDAlert extends Context {
 
     this.containerClickClose(CONTAINER);
   }
+
   async DRAW() {
     let onOpen = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.onOpen);
     let autoCloseDuration = this.CONTEXT_PROVIDER_GET(
@@ -196,8 +228,15 @@ class DNDAlert extends Context {
     }
   }
 
+  /*
+   * infoLoader()
+   * VERSION,NPM and GITHUB usage sourceControl();
+   *
+   * IS_CLOSE usage this.removeContainer() for onClose conflict;
+   * CREATED_TIME usage bagCreator() and runOnClose();
+   */
   infoLoader() {
-    this.VERSION = "2.5.0";
+    this.VERSION = "2.5.1";
     this.NPM = "www.npmjs.com/package/dndalertjs";
     this.GITHUB = "www.github.com/ismailfp/DNDAlert";
     this.IS_CLOSE = false;
@@ -494,6 +533,15 @@ class DNDAlert extends Context {
         );
         if (e.target.classList.contains(this.CLASS_LIST.container)) {
           if (openAnimationStatus) {
+            /*
+             * ThisTimeout
+             * If the user clicks on the background for close the modal,
+             * the modal will be closed after the animation is finished.
+             *
+             * OPEN_ANIMATION_CLOSE_CONFLICT_TIME
+             * This is the time[?] that the animation will be finished.
+             * [?] Animation Time + 100ms
+             */
             setTimeout(() => {
               this.removeContainer();
             }, this.OPEN_ANIMATION_CLOSE_CONFLICT_TIME);
@@ -506,6 +554,15 @@ class DNDAlert extends Context {
   }
 
   contextBoxDrag() {
+    /*
+     * titleStatus
+     * If the title is not defined,
+     * the modal will not be draggable.
+     *
+     * Because the drag event is triggered by the header.
+     * If the title is not defined,
+     * the header will not be created.
+     */
     let titleStatus = this.CONTEXT_PROVIDER_GET(this.CONTEXT_QUERY_NAME.title);
     if (!titleStatus) return false;
 
@@ -535,6 +592,12 @@ class DNDAlert extends Context {
         }
       });
       header.addEventListener("mousedown", (e) => {
+        /*
+         * viewPortWidth
+         * If the viewPortWidth is less than 700,
+         * the modal will not be draggable.
+         * Because the modal will be full screen on mobile devices.
+         */
         let viewPortWidth = window.innerWidth;
         if (viewPortWidth <= 700) return false;
 
@@ -632,6 +695,16 @@ class DNDAlert extends Context {
   }
 
   errorOptionsLoader() {
+    /*
+     * props
+     * Get all props from the context provider
+     * for error handling.
+     *
+     * VSCode will show an error,
+     * 'props' is declared but its value is never read.
+     * Because the props are used in the
+     * eval function. But it is not a problem.
+     */
     let props = this.CONTEXT_PROVIDER_GET_ALL();
 
     this.ERROR_PREFIX = "DNDAlert: ";
@@ -810,6 +883,12 @@ class DNDAlert extends Context {
       this.classAdder(content_box, [this.CLASS_LIST.closeAnimation.class]);
 
       content_box.addEventListener("animationend", () => {
+        /*
+         * if
+         * content_box has closeAnimation class
+         * then remove the container else
+         * do nothing for openAnimation conflict.
+         */
         if (
           content_box.classList.contains(this.CLASS_LIST.closeAnimation.class)
         ) {
