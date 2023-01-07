@@ -3,7 +3,7 @@
  *  Simple JavaScript library alert for web developers.
  *
  *  License: MIT (c) 2022
- *  Author: Ismail Dondu
+ *  Author: İsmail Döndü
  */
 
 class Context {
@@ -492,7 +492,6 @@ class DNDAlert extends Context {
       this.CONTEXT_QUERY_NAME.buttonsRef,
       tempButtonRefArray
     );
-    console.log(this.CONTEXT_PROVIDER_GET_ALL());
   }
 
   createMainElements() {
@@ -1000,4 +999,5 @@ class DNDAlert extends Context {
       element.classList.add(className);
     });
   }
+
 }
