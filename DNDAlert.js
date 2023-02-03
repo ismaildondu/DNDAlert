@@ -238,7 +238,7 @@ class DNDAlert extends Context {
    * CREATED_TIME usage bagCreator() and runOnClose();
    */
   infoLoader() {
-    this.VERSION = "2.5.2";
+    this.VERSION = "2.5.3";
     this.NPM = "www.npmjs.com/package/dndalertjs";
     this.GITHUB = "www.github.com/ismailfp/DNDAlert";
     this.IS_CLOSE = false;
