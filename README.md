@@ -178,7 +178,7 @@ git clone https://github.com/ismailfp/DNDAlert.js.git
 | PROPERTIES->HOW_MANY_SECONDS | Only onClose BAG (Shows how many seconds the alert on after closing) |
 
 ----
-Copyright (c) 2023 İsmail Döndü
+Copyright (c) 2022 İsmail Döndü
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
